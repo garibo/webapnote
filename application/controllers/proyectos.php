@@ -97,15 +97,6 @@ class Proyectos extends CI_Controller {
 		}
 	}
 
-	public function obtenerProyecto($id){
-		if($this->session->userdata('logger') == TRUE){
-			$data['infoProyecto'] = $this->m_proyectos->viewProyecto($id);
-			$this->load->view('proyecto', $data);
-		}else{
-			redirect(base_url());
-		}
-	}
-
 
 	/*********** Categorias Index  ***************/
 	
@@ -139,6 +130,16 @@ class Proyectos extends CI_Controller {
 		}
 	}
 
+	public function view($id, $rfc){
+		if($this->session->userdata('logger') == TRUE){
+			$data['infoProyecto'] = $this->m_proyectos->viewProyecto($id);
+			$data['orgpro'] = $this->m_proyectos->obtenerOrganizacion($rfc);
+			$this->load->view('proyecto', $data);
+		}else{
+			redirect(base_url());
+		}
+	}
+
 	public function agregarCategoria(){
 		if($this->session->userdata('logger') == TRUE){
 			$this->form_validation->set_rules('categoria', 'Categoria', 'trim|required|xss_clean');
@@ -162,6 +163,29 @@ class Proyectos extends CI_Controller {
 					);
 				$result = json_encode($datos);
 				echo $result;
+			}
+		}else{
+			redirect(base_url());
+		}
+	}
+
+
+	public function agregarTarea(){
+		if($this->session->userdata('logger') == TRUE){
+			$tarea = $this->input->post('tarea');
+			$proid = $this->input->post('proyid');
+			$idtarea = $this->m_proyectos->nuevaTarea($tarea);
+			if($idtarea != 0){
+				$return = $this->m_proyecto->proyTareas($proid, $idtarea);
+				if($return){
+					$message = array(
+						'status' => 'Complete',
+						'message' => 'Agregado Correctamente'
+						);
+
+					$result = json_encode($message);
+					echo $result;
+				}
 			}
 		}else{
 			redirect(base_url());

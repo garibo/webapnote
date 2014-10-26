@@ -734,6 +734,10 @@ ul.nav-side li > span a{
 	top: 37px;
 	right: 25px;
 }
+
+#infotable {
+	margin-bottom: -1px !important;
+}
 /****************************************
 	Add Custom Media Queries
 ****************************************/

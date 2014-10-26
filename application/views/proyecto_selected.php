@@ -99,7 +99,7 @@
 											}
 										 ?>
 									</td>
-									<td><a href="<?=base_url('proyectos/obtenerProyecto/');?>/<?=$row['c_proy_id'];?>" data-reveal-id="modal-project" data-reveal-ajax="true" style="margin-bottom: 0 !important;" class="button success tiny radius">Información</a></td>
+									<td><a href="<?=base_url('proyectos/view/');?>/<?=$row['c_proy_id'];?>/<?=$orgpro['c_rfc'];?>" style="margin-bottom: 0 !important;" class="button success tiny radius">Información</a></td>
 								</tr>
 								<?php endforeach; ?>
 							</tbody>
@@ -117,10 +117,5 @@
 	</div>
 
 	<?php $this->load->view('dropdown'); ?>
-
-	<!-- Modal Information Proyecto -->
-	<div id="modal-project" class="reveal-modal medium" data-reveal>
-		
-	</div>
 
 <?php $this->load->view('footer'); ?>

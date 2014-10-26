@@ -109,7 +109,7 @@ class M_Proyectos extends CI_Model {
 	}
 
 	public function viewProyecto($id){
-		$this->db->select('CI_PROYECTOS.c_proy_name AS proy_name, CI_PROYECTOS.c_proy_descri AS proy_descri, CI_PROYECTOS.c_fecha_creado AS fecha_creado, CI_PROYECTOS.c_fecha_ini AS estado, CI_USUARIOS.u_nombre AS res_name, CI_USUARIOS.u_apep AS res_apep, CI_USUARIOS.u_apem AS res_apem, CI_CATEGORIAS.cat_name AS proy_categoria');
+		$this->db->select('CI_PROYECTOS.c_proy_id AS proy_id, CI_PROYECTOS.c_proy_name AS proy_name, CI_PROYECTOS.c_proy_descri AS proy_descri, CI_PROYECTOS.c_fecha_creado AS fecha_creado, CI_PROYECTOS.c_fecha_ini AS estado, CI_USUARIOS.u_nombre AS res_name, CI_USUARIOS.u_apep AS res_apep, CI_USUARIOS.u_apem AS res_apem, CI_CATEGORIAS.cat_name AS proy_categoria');
 		$this->db->from('CI_PROYECTOS, CI_CATEGORIAS, CI_DETALLE_PROYASIGN, CI_USUARIOS');
 		$this->db->where('CI_PROYECTOS.c_proy_id = CI_DETALLE_PROYASIGN.c_proy_id');
 		$this->db->where('CI_CATEGORIAS.id_category = CI_PROYECTOS.id_category');
@@ -121,6 +121,28 @@ class M_Proyectos extends CI_Model {
 		}else{
 			return null;
 		}
+	}
+
+	public function nuevaTarea($tarea){
+		$data = array(
+			'ci_tarea_name' => $tarea
+			);
+
+		$this->db->trans_start();
+		$this->db->insert('CI_TAREAS', $data);
+		$idtarea = $this->db->insert_id();
+		$this->db->trans_complete();
+
+		return $idtarea;
+	}
+
+	public function proyTareas($idpro, $idtarea){
+		$data = array(
+			'c_proy_id' => $idpro, 
+			'ci_tarea_id' => $idtarea
+			);
+
+		return $this->db->insert('CI_DETALLE_PROYTAREAS', $data);
 	}
 
 }
