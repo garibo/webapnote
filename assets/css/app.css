@@ -738,6 +738,11 @@ ul.nav-side li > span a{
 #infotable {
 	margin-bottom: -1px !important;
 }
+
+#formdrop {
+	height: 78px !important;
+}
+
 /****************************************
 	Add Custom Media Queries
 ****************************************/

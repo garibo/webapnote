@@ -432,15 +432,17 @@ $(document).ready(function(){
 	// Agregar nueva tarea a un proyecto;
 	$('#form-activity').submit(function(e){
 		e.preventDefault();
-		var data = document.getElementById('agregarProy');
+		var data = document.getElementById('form-activity');
 		var proid = data.getAttribute('data-id-proyecto');
 		var activity = $('#txt-task').val();
+		console.log(proid+' '+activity);
 		$.ajax({
 			url: '/proyectos/agregarTarea',
 			dataType: 'json',
+			type: 'POST',
 			data: {tarea: activity, proyid: proid},
 			success: function(response){
-				console.log(response);
+			console.log(response);
 			}
 		});
 	});

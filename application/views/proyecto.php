@@ -15,7 +15,7 @@
 						<ul class="breadcrumbs">
 							<li><a href="<?=base_url('dashboard');?>">Dashboard</a></li>
 							<li><a href="<?=base_url('proyectos');?>">Proyectos</a></li>
-							<li><a href="<?=base_url('proyectos/selected');?>/<?=$orgpro['c_rfc'];?>">Proyectos en <?=$orgpro['c_name'];?></a></li>
+							<li><a href="<?=base_url('proyectos/selected');?>/<?=$orgpro['c_rfc'];?>"><?=$orgpro['c_name'];?></a></li>
 							<li class="current"><a href="#"><strong>Proyecto</strong></a></li>
 						</ul>
 					</div>
@@ -59,7 +59,7 @@
 								</tr>
 							</tbody>
 						</table>
-						<table class="large-10 column" id="infotable">
+						<table class="large-10 column">
 							<thead>
 								<tr>
 									<th class="text-center">Fecha de Creación</th>
@@ -77,8 +77,46 @@
 						</table>
 					</div>
 				</div>
+				<div class="row">
+					<div class="large-5 columns">
+						<h5 class="subheader">Actividades del Proyecto <a href="#" class="button small radius right" data-options="align: bottom" data-dropdown="formdrop" aria-controls="formdrop" aria-expanded="false" style="position: absolute; right: 15px; top: -7px;height: 33px; padding: 10px;"><i class="fi-plus" style="padding-right: 5px;"></i> Agregar una Nueva</a></h5>
+						<table class="large-10 column">
+							<thead>
+								<tr>
+									<th>Definición</th>
+									<th width="50">Opciones</th>
+								</tr>
+							</thead>
+							<tbody>
+							<?php if($tareas != null): ?>
+								<?php foreach($tareas as $row): ?>
+									<tr>
+										<td><?=$row['Titulo'];?></td>
+										<td><?=$row['Avance'];?></td>
+									</tr>
+								<?php endforeach;?>
+							<?php endif; ?>
+							</tbody>
+						</table>
+					</div>
+					<div class="large-5 columns"></div>
+				</div>
 			</div>
 		</div>
+	</div>
+	<div id="formdrop" data-dropdown-content class="f-dropdown medium content" aria-hidden="true" tabindex="-1">
+		<form id="form-activity" data-id-proyecto="<?=$infoProyecto['proy_id'];?>">
+			<div class="row">
+				<div class="large-7 columns">
+					<label>
+						<input type="text" id="txt-task" />
+					</label>
+				</div>
+				<div class="large-3 columns">
+					<input type="submit" class="button small radius right" style="height: 37px;" value="Registrar" />	
+				</div>
+			</div>
+		</form>
 	</div>
 
 	<?php $this->load->view('dropdown'); ?>

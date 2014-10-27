@@ -133,6 +133,7 @@ class Proyectos extends CI_Controller {
 	public function view($id, $rfc){
 		if($this->session->userdata('logger') == TRUE){
 			$data['infoProyecto'] = $this->m_proyectos->viewProyecto($id);
+			$data['tareas'] = $this->m_proyectos->obtenerTareas($id);
 			$data['orgpro'] = $this->m_proyectos->obtenerOrganizacion($rfc);
 			$this->load->view('proyecto', $data);
 		}else{
@@ -176,11 +177,14 @@ class Proyectos extends CI_Controller {
 			$proid = $this->input->post('proyid');
 			$idtarea = $this->m_proyectos->nuevaTarea($tarea);
 			if($idtarea != 0){
-				$return = $this->m_proyecto->proyTareas($proid, $idtarea);
+				$return = $this->m_proyectos->proyTareas($proid, $idtarea);
 				if($return){
 					$message = array(
 						'status' => 'Complete',
-						'message' => 'Agregado Correctamente'
+						'message' => 'Agregado Correctamente',
+						'datos' => array(
+							'tarea' => $tarea
+							)
 						);
 
 					$result = json_encode($message);
