@@ -68,7 +68,11 @@ $(document).ready(function(){
 		$('.app-icon-comment').removeClass('app-icon-widget-base');
 	});	
 
-	// Form de Organizaciones - Agregar organización ;
+	/*************************************************
+	* @author 	Javier Diaz
+	* @return 	Retorna el resultado de agregar nueva
+	*						Organización
+	*************************************************/
 	$('#add-form-org').submit(function(e){
 		e.preventDefault();
 		var errors;
@@ -164,7 +168,7 @@ $(document).ready(function(){
 	* @author			Javier Díaz Chamorro
 	* @modify			29102014
 	*****************************************************************/
-	$('a#del').click(function(e){
+	$('#records-org').on('click', 'a#del', function(){
 		var value = $(this).attr('value');
 		swal({
 			title: 'Estas seguro?',
@@ -189,7 +193,6 @@ $(document).ready(function(){
 			});
 		});
 		
-		e.preventDefault();
 	});
 
 	/****************************************************************
