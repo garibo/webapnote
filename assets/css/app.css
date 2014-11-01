@@ -776,6 +776,10 @@ table tr td > a > i {
 	padding-right: 8px;
 }
 
+#records-org tr > td + td + td + td {
+	text-align: center;
+}
+
 .has-tip {
 	border: 0 !important;
 	cursor: auto !important;

@@ -38,14 +38,14 @@
 									<th width="80"></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="records-org">
 								<?php foreach($datos as $row){?>
 									<tr>
 										<td><?=$row['c_rfc'];?></td>
 										<td><?=$row['c_name'];?></td>
 										<td><?=$row['c_descri'];?></td>
 										<td><?=$row['c_phone'];?></td>
-										<td style="text-align:center;"><?php
+										<td><?php
 										switch ($row['id_clase']) {
 											case 1:
 												echo "A";

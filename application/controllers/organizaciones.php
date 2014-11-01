@@ -18,7 +18,10 @@ class Organizaciones extends CI_Controller {
 		}
 	}
 
-	// Agregar nuevas organizacones a la DB;
+	/***************************************
+	* @function 	Agregar nuevas organizaciones
+	* @author 		Javier Diaz
+	***************************************/
 	public function addO(){
 		$this->form_validation->set_rules('rfc', 'RFC de Compañía', 'trim|required|xss_clean|min_length[12]|max_length[13]|is_unique[CI_COMPANY.c_rfc]');
 		$this->form_validation->set_rules('name', 'Nombre', 'trim|required|xss_clean');
@@ -68,17 +71,33 @@ class Organizaciones extends CI_Controller {
 			$clas = $this->input->post('clases');
 
 			$query = $this->m_organizaciones->insertOrg($rfc, $name, $phone, $des, $clas);
+			
+			switch($clas) {
+				case 1: 
+					$clase = "A";
+					break;
+				case 2:
+				 	$clase = "B";
+					break;
+				case 3:
+					$clase = "C";
+					break;
+				case 4: 
+					$clase = "D";
+					break;
+			};
+
 			if($query){
 				$errors = array(
 					array(
 						'campo' => 'group-rfc',
 						'error' => '',
 						'datos' => array(
-							'rfc' => $rfc, 
-							'nombre' => $name,
-							'telefono' => $phone,
-							'descripcion' => $des,
-							'clase' => $clas
+							'arfc' => $rfc, 
+							'bnombre' => $name,
+							'cdescripcion' => $des,
+							'dtelefono' => $phone,
+							'eclase' => $clase
 							)
 						)
 					);

@@ -92,10 +92,26 @@ $(document).ready(function(){
 				console.log(errors);
 
 				if(errors === 0){
-					$('#app-add-org').foundation('reveal', 'close');
 					$('#add-form-org').reset();
-					alert('Registro Correcto');
-					location.href = 'organizaciones';
+					var fila = $('<tr/>');
+					$.each(data[0].datos, function(key, value){
+						$('<td/>', {
+							text: value
+						}).appendTo(fila);
+					});
+					$('<td/>',{html: '<a href="/organizaciones/team/'+data[0].datos.arfc+'"><i class="fi-torsos-all"></i></a>'}).css('text-align','center').css('font-size','20px').appendTo(fila);
+					$('<td/>', {html: '<a href="#" id="del" value="'+data[0].datos.arfc+'" class="btn-delete"><i class="fi-trash"></i></a> <a href="/organizaciones/edit/'+data[0].datos.arfc+'"><i class="fi-pencil"></i></a>'}).css('text-align', 'center').css('font-size', '20px').appendTo(fila);
+					fila.appendTo('#records-org');
+					swal({
+						title: 'Good Job',
+						type: 'success',
+						text: 'Organización agregada correctamente',
+						showCancelButton: false, 
+						confirmButtonText: 'Ok',
+						closeOnConfirm: true
+					}, function(){
+						$('#app-add-org').foundation('reveal', 'close');
+					});
 				}
 			}
 		});
