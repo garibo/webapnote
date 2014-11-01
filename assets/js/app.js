@@ -42,7 +42,12 @@ $(document).ready(function(){
 		$('#app-policy').animate({'opacity': '1', 'display': 'inherit'}, 500);
 	});
 
-	// Inicio de Sesion;
+	/*************************************************************************
+	 * @return 				Esta función retorna una alerta al realizar un inicio
+	 *								de sesión de forma satisfactoria.
+	 * @author				Javier Diaz Chamorro
+	 * @modify				30102014
+	 ************************************************************************/
 	$('#app-signin').submit(function(e){
 		e.preventDefault();
 		$.post(
@@ -52,15 +57,7 @@ $(document).ready(function(){
 				if(data == 1){
 					location.href='dashboard';
 				}else {
-					setTimeout(function() {
-						var notification = new NotificationFx({
-							message: '<p style="font-size: 14px;">El Correo eletronico y/o Contraseña son incorrectos.</p>',
-							layout: 'growl',
-							effect: 'jelly',
-							type: 'notice'
-						});
-						notification.show();
-					}, 100);
+					swal("Error", "Correo Electrónico y/o Contraseña incorrectos", "error");
 				}
 			}
 		);
@@ -144,32 +141,48 @@ $(document).ready(function(){
 	$('#phone-edit').validations('0123456789');
 	$('#phone-input').validations('0123456789');
 
-	// Eliminar Organización ;
+	/****************************************************************
+	* @return 		Retorna la confirmación, sobre la eliminación
+	* 						de una organización, además aviso de si se puede
+	* 						eliminar o no.
+	* @author			Javier Díaz Chamorro
+	* @modify			29102014
+	*****************************************************************/
 	$('a#del').click(function(e){
 		var value = $(this).attr('value');
-		$.ajax({
-			url: 'organizaciones/delete/'+value,
-			dataType: 'text',
-			success: function(data) {
-				if(data == 1){
-					location.href="organizaciones";
-				}else{
-					setTimeout(function() {
-						var notification = new NotificationFx({
-							message: '<p style="font-size: 14px;">La organización contiene Usuarios o Proyectos registrados. No se puede eliminar la organización.</p>',
-							layout: 'growl',
-							effect: 'slide',
-							type: 'notice'
-						});
-						notification.show();
-					}, 100);
+		swal({
+			title: 'Estas seguro?',
+			text: 'Una vez eliminado, ya no podrás recuperarlo.',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: '#DD6B55',
+			confirmButtonText: "Si, Eliminar",
+			cancelButtonText: "Cancelar",
+			closeOnConfirm: false,
+		},function(){
+			$.ajax({
+				url: 'organizaciones/delete/'+value,
+				dataType: 'text',
+				success: function(data) {
+					if(data == 1){
+						location.href="organizaciones";
+					}else{
+						swal('Error', 'No se puede eliminar la organización', 'error');
+					}
 				}
-			}
+			});
 		});
+		
 		e.preventDefault();
 	});
 
-	// Nuevo usuario al equipo de trabajo ;
+	/****************************************************************
+	* @return 		Retorna la confirmación sobre el registro de usuario
+	*							previamente solicitado, o errores que conforman, el
+	*							formulario de envio de los datos.
+	* @author			Javier Díaz Chamorro
+	* @modify			30s102014
+	*****************************************************************/
 	$('#add-team-user').submit(function(e){
 		e.preventDefault();
 		var objective = $(this).attr('value');
@@ -194,20 +207,15 @@ $(document).ready(function(){
 				if(errors === 0){
 						$('#add-user-te').slideToggle('slow');
 						$('#add-team-user').reset();
-						setTimeout(function() {
-						var notification = new NotificationFx({
-							message: '<p style="font-size: 14px;">Nuevo usuario agregado al equipo de trabajo.</p>',
-							layout: 'growl',
-							effect: 'slide',
-							type: 'notice',
-							onClose: function(){
-								setTimeout(function(){
-									location.href="/organizaciones/team/"+objective;
-								}, 200);
-							}
+						var fila = $('<tr/>');
+						$.each(data[0].datos, function(key, value){
+							$('<td/>', {
+								text: value
+							}).appendTo(fila);
 						});
-						notification.show();
-						}, 100);
+						$('<td/>',{html: '<a href="/organizaciones/deleteTUser/'+data[0].datos.ausername+'/'+data[0].rfc+'" class="btn-delete"><i class="fi-trash"></i></a><a href="/organizaciones/profileTeam/'+data[0].datos.ausername+'"data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a>'}).css('text-align','center').css('font-size','20px').appendTo(fila);
+						fila.appendTo('#records-organizaciones');
+						swal("Good Job!", "Usuario agregado correctamente", "success");
 					}
 			}
 		});

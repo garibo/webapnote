@@ -72,7 +72,7 @@
 						<h4 style="color: #FFFFFF; text-shadow: 1px 1px 5px #000000;" class="subheader text-justify">Únete y mira por qué aumenta tu productividad y tu eficiencia en el trabajo, una interfaz amigable
 						que te encantara.</h4>
 						<br />
-						<span><a href="#" class="large-10 button radius" data-reveal-id="register-modal" data-reveal>Inscribete Gratis</a></span>
+						<span><a href="#" class="large-5 button radius right" style="margin-top: 15px;" data-reveal-id="register-modal" data-reveal>Inscribete Gratis</a></span>
 						<br />
 						<p style="color: #FFFFFF; text-shadow: 1px 1px 5px #000000;text-align: left;">Disponible en <a href="#" style="color: #FDE534;">Android</a> y Web. Por ahora!</p>
 					</div>

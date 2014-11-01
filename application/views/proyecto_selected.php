@@ -21,7 +21,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Proyectos en <?=$orgpro['c_name'];?> <a href="#" id="btn-open-pro" class="button radius tiny right" style="position: absolute; right: 15px; top: -8px;"><i></i>Crear Nuevo Proyecto</a></h5>
+						<h5 class="subheader">Proyectos en <?=$orgpro['c_name'];?> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a></h5>
 					</div>
 				</div>
 				<div class="row" id="panel-form-id">
@@ -65,7 +65,7 @@
 								<br />
 								<div class="row">
 									<div class="large-10 column">
-										<input type="submit" class="button large-10" value="Registrar Proyecto" />
+										<input type="submit" class="button large-10 radius small" value="Registrar Proyecto" />
 									</div>
 								</div>
 							</form>

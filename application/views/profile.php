@@ -20,7 +20,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Mi Perfil Personal <a id="edit-profile" href="#" class="button small right radius" style="width: 107px;position:absolute; padding: 10px !important; padding-left: 35px !important; top:-5px;right: 30px;"><i class="fi-page-edit" style="position: absolute; top: 5px; left: 25px; font-size: 20px;"></i> Editar</a> <a id="save-profile" href="#" class="button success small right radius" style="display: none; position:absolute; padding: 10px !important; padding-left: 35px !important; top:-5px;right: 145px;"><i class="fi-save" style="position: absolute; top: 5px; left: 10px; font-size: 20px;"></i> Guardar Cambios</a></h5>
+						<h5 class="subheader">Mi Perfil Personal <a id="edit-profile" href="#" class="button small right radius" style="width: 107px;position:absolute; padding: 10px !important; padding-left: 35px !important; top:-5px;right: 30px;"><i class="fi-page-edit" style="position: absolute; top: 5px; left: 25px; font-size: 20px;"></i> Editar</a> <a id="save-profile" href="#" class="button small right radius" style="display: none; width: 190px; position:absolute; padding: 10px !important; padding-left: 35px !important; top:-5px;right: 145px;"><i class="fi-save" style="position: absolute; top: 5px; left: 10px; font-size: 20px;"></i> Guardar Cambios</a></h5>
 						<br />
 						<div class="large-2 columns">
 							<div id="th-profile" class="th" style="position: relative;">

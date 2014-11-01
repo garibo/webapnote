@@ -74,7 +74,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Equipo de Trabajo <a href="#" id="reg-user-t" class="button radius tiny right" style="position: absolute; right: 15px; top: -8px;"><i></i> Añadir Usuario</a></h5>
+						<h5 class="subheader">Equipo de Trabajo <a href="#" id="reg-user-t" class="button radius tiny right btn-new"><i></i> Añadir Usuario</a></h5>
 						<?php if(!empty($team)): ?>
 							<table class="large-10">
 								<thead>
@@ -87,7 +87,7 @@
 										<th style="text-align: center;"></th>
 									</tr>
 								</thead>
-								<tbody>
+								<tbody id="records-organizaciones">
 									<?php foreach($team as $row): ?>
 									<tr>
 										<td><?=$row['user'];?></td>
@@ -124,7 +124,7 @@
 									<th>Descripción</th>
 									<th>Teléfono</th>
 									<th style="text-align:center;">Clase</th>
-									<th style="text-align:center;">E.T.</th>
+									<th style="text-align:center;"></th>
 									<th width="80"></th>
 								</tr>
 							</thead>
@@ -154,7 +154,7 @@
 												break;
 										}
 										?></td>
-										<td style="text-align: center;font-size: 20px;"><a href="<?=base_url('organizaciones/team');?>/<?=$row['c_rfc'];?>"><i class="fi-eye"></i></a></td>
+										<td style="text-align: center;font-size: 20px;"><a href="<?=base_url('organizaciones/team');?>/<?=$row['c_rfc'];?>"><i class="fi-torsos-all"></i></a></td>
 										<td style="text-align: center; font-size: 20px;"><a href="#" id="del" value="<?=$row['c_rfc'];?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('organizaciones/edit');?>/<?=$row['c_rfc'];?>"><i class="fi-pencil"></i></a></td>
 									</tr>
 								<?php }?>

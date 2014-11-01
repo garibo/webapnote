@@ -72,7 +72,14 @@ class Organizaciones extends CI_Controller {
 				$errors = array(
 					array(
 						'campo' => 'group-rfc',
-						'error' => ''
+						'error' => '',
+						'datos' => array(
+							'rfc' => $rfc, 
+							'nombre' => $name,
+							'telefono' => $phone,
+							'descripcion' => $des,
+							'clase' => $clas
+							)
 						)
 					);
 				$result = json_encode($errors);
@@ -224,7 +231,15 @@ class Organizaciones extends CI_Controller {
 					$errors = array(
 						array(
 							'campo' => 'group-rfc',
-							'error' => ''
+							'error' => '',
+							'datos' => array(
+								'ausername' => $username,
+								'bnombre' => $nombre, 
+								'capep' => $apep, 
+								'dapem' => $apem,
+								'eemail' => $email,
+								),
+							'rfc' => $rfc
 							)
 						);
 					$result = json_encode($errors);
