@@ -87,7 +87,7 @@
 										<th style="text-align: center;"></th>
 									</tr>
 								</thead>
-								<tbody id="records-organizaciones">
+								<tbody id="body-org">
 									<?php foreach($team as $row): ?>
 									<tr>
 										<td><?=$row['user'];?></td>
@@ -95,7 +95,7 @@
 										<td><?=$row['apep'];?></td>
 										<td><?=$row['apem'];?></td>
 										<td><?=$row['email']?></td>
-										<td style="text-align: center; font-size: 20px;"><a href="<?=base_url('organizaciones/deleteTUser');?>/<?=$row['user'];?>/<?=$this->uri->segment(3);?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('organizaciones/profileTeam');?>/<?=$row['user'];?>" data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a></td>
+										<td style="text-align: center; font-size: 20px;"><a href="#" id="del" data-org="<?=$this->uri->segment(3);?>" data-user="<?=$row['user']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('organizaciones/profileTeam');?>/<?=$row['user'];?>" data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a></td>
 									</tr>
 									<?php endforeach; ?>
 								</tbody>
@@ -128,7 +128,7 @@
 									<th width="80"></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="records-org">
 								<?php foreach($datos as $row){?>
 									<tr>
 										<td><?=$row['c_rfc'];?></td>

@@ -75,41 +75,51 @@
 				<!-- table to projects -->
 				<div class="row">
 					<div class="large-10 column">
-						<?php if(!empty($proyectos)){ ?>
-						<table>
-							<thead>
-								<tr>
-									<th width="900">Información Básica</th>
-									<th width="100">Estado</th>
-									<th></th>
-								</tr>
-							</thead>
-							<tbody>
-								<?php foreach($proyectos as $row):?>
-								<tr>
-									<td>
-										<p style="font-size: .875rem !important; margin-bottom: 0 !important;"><?=$row['c_proy_name'];?></p>
-									</td>
-									<td>
-										<?php 
-											if($row['c_fecha_ini'] == '0000-00-00 00:00:00'){
-												echo "En Espera";
-											}else{
-												echo "En Curso";
-											}
-										 ?>
-									</td>
-									<td><a href="<?=base_url('proyectos/view/');?>/<?=$row['c_proy_id'];?>/<?=$orgpro['c_rfc'];?>" data-reveal-id="modal-project" data-reveal-ajax="true" style="margin-bottom: 0 !important;" class="button success tiny radius">Información</a></td>
-								</tr>
-								<?php endforeach; ?>
-							</tbody>
-						</table>
+						<ul class="large-block-grid-3">
+						<?php if(!empty($proyectosActivos)){ ?>
+							<?php foreach($proyectosActivos as $row): ?>
+							<li>
+								<div id="block-item">
+									<h6 class="text-center title"><?=$row['Nombre'];?></h6>
+									<div class="info-tasks">
+										<p><b><?=$row['Tareas']?> Tareas</b></p>
+										<p><span><?=$row['CreadoEn'];?></span></p>
+									</div>
+									<div class="opciones">
+										<p><a href="#" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+									</div>
+								</div>
+							</li>
+						<?php endforeach;?>
+						</ul>
 						<?php }else {?>
 						<div class="panel callout">
 							<p class="text-center" style="line-height: inherit !important;"><i class="fi-annotate" style="font-size: 50px;color: #AAAAAA;"></i></p>
 							<h6 style="color: #AAAAAA;" class="text-center">Usted no tiene proyectos en esta Organización.</h6>
 						</div>
 						<?php	} ?>
+					</div>
+				</div>
+				<div class="row">
+					<div class="large-10 column">
+						<?php if(!empty($proyectosInactivos)): ?>
+							<ul class="large-block-grid-3" id="body-projects">
+								<?php foreach($proyectosInactivos as $row): ?>
+									<li>
+										<div id="block-item">
+											<h6 class="text-center title"><?=$row['Nombre'];?></h6>
+											<div class="info-tasks">
+												<p><b>Sin Tareas</b></p>
+												<p><span><?=$row['CreadoEn'];?></span></p>
+											</div>
+											<div class="opciones">
+												<p><a href="#" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+											</div>
+										</div>
+									</li>
+								<?php endforeach;?>
+							</ul>
+						<?php endif; ?>
 					</div>
 				</div>
 			</div>

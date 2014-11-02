@@ -30,12 +30,32 @@ class M_Proyectos extends CI_Model {
 	}
 
 	public function loadProyectos($rfc){
-		$this->db->where('c_rfc', $rfc);
-		$query = $this->db->get('CI_PROYECTOS');
+		$this->db->select('CI_PROYECTOS.c_proy_id AS Id, CI_PROYECTOS.c_proy_name AS Nombre, CI_PROYECTOS.c_fecha_creado AS CreadoEn, COUNT(*) AS Tareas');
+		$this->db->from('CI_PROYECTOS, CI_DETALLE_PROYASIGN, CI_USUARIOS, CI_DETALLE_PROYTAREAS');
+		$this->db->where('CI_PROYECTOS.c_proy_id = CI_DETALLE_PROYASIGN.c_proy_id');
+		$this->db->where('CI_USUARIOS.u_email = CI_DETALLE_PROYASIGN.u_email');
+		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id = CI_PROYECTOS.c_proy_id');
+		$this->db->where('CI_PROYECTOS.c_rfc', $rfc);
+		$this->db->where('CI_PROYECTOS.c_proy_bandera', '1');
+		$this->db->group_by('Nombre');
+		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			return $query->result_array();
 		}else{
 			return NULL;
+		}
+	}
+
+	public function loadProyectosInactive($rfc){
+		$this->db->select('CI_PROYECTOS.c_proy_id AS Id, CI_PROYECTOS.c_proy_name AS Nombre, CI_PROYECTOS.c_fecha_creado AS CreadoEn');
+		$this->db->from('CI_PROYECTOS');
+		$this->db->where('CI_PROYECTOS.c_rfc', $rfc);
+		$this->db->where('CI_PROYECTOS.c_proy_bandera <> 1');
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else{
+			return null;
 		}
 	}
 
@@ -108,6 +128,21 @@ class M_Proyectos extends CI_Model {
 		}
 	}
 
+	public function viewProyectoDemo($id){
+		$this->db->select('CI_PROYECTOS.c_proy_id AS proy_id, CI_PROYECTOS.c_proy_name AS proy_name, CI_PROYECTOS.c_proy_descri AS proy_descri, CI_PROYECTOS.c_fecha_creado AS fecha_creado, CI_PROYECTOS.c_fecha_ini AS estado, CI_USUARIOS.u_nombre AS res_name, CI_USUARIOS.u_apep AS res_apep, CI_USUARIOS.u_apem AS res_apem, CI_CATEGORIAS.cat_name AS proy_categoria');
+		$this->db->from('CI_PROYECTOS, CI_CATEGORIAS, CI_DETALLE_PROYASIGN, CI_USUARIOS');
+		$this->db->where('CI_PROYECTOS.c_proy_id = CI_DETALLE_PROYASIGN.c_proy_id');
+		$this->db->where('CI_CATEGORIAS.id_category = CI_PROYECTOS.id_category');
+		$this->db->where('CI_USUARIOS.u_email = CI_DETALLE_PROYASIGN.u_email');
+		$this->db->where('CI_PROYECTOS.c_proy_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->row();
+		}else{
+			return null;
+		}
+	}
+
 	public function viewProyecto($id){
 		$this->db->select('CI_PROYECTOS.c_proy_id AS proy_id, CI_PROYECTOS.c_proy_name AS proy_name, CI_PROYECTOS.c_proy_descri AS proy_descri, CI_PROYECTOS.c_fecha_creado AS fecha_creado, CI_PROYECTOS.c_fecha_ini AS estado, CI_USUARIOS.u_nombre AS res_name, CI_USUARIOS.u_apep AS res_apep, CI_USUARIOS.u_apem AS res_apem, CI_CATEGORIAS.cat_name AS proy_categoria');
 		$this->db->from('CI_PROYECTOS, CI_CATEGORIAS, CI_DETALLE_PROYASIGN, CI_USUARIOS');
@@ -143,6 +178,14 @@ class M_Proyectos extends CI_Model {
 			);
 
 		return $this->db->insert('CI_DETALLE_PROYTAREAS', $data);
+	}
+
+	public function actualizarPorTareas($idpro){
+		$data = array(
+			'c_proy_bandera' => 1
+			);
+		$this->db->where('c_proy_id', $idpro);
+		return $this->db->update('CI_PROYECTOS', $data);
 	}
 
 	public function obtenerTareas($id){

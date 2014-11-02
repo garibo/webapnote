@@ -182,11 +182,20 @@ class Organizaciones extends CI_Controller {
 		}
 	}
 
-	public function deleteTUser($user, $segment){
+	public function deleteTUser($user, $rfc){
 		if($this->session->userdata('logger') == TRUE){
-			$query = $this->m_organizaciones->deleteTU($user);
+			$query = $this->m_organizaciones->userdelVerification($user);
 			if($query){
-				redirect(base_url('organizaciones/team/'.$segment));
+				$this->m_organizaciones->deleteTU($user);
+				$data = array(
+					'value' => 1
+					);
+				echo json_encode($data);
+			}else{
+				$data = array(
+					'value' => 0
+					);
+				echo json_encode($data);
 			}
 		}else{
 			redirect(base_url());

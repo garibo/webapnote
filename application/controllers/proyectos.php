@@ -20,7 +20,8 @@ class Proyectos extends CI_Controller {
 
 	public function selected($rfc) {
 		if($this->session->userdata('logger') == TRUE){
-			$datos['proyectos'] = $this->m_proyectos->loadProyectos($rfc);
+			$datos['proyectosActivos'] = $this->m_proyectos->loadProyectos($rfc);
+			$datos['proyectosInactivos'] = $this->m_proyectos->loadProyectosInactive($rfc);
 			$datos['categorias'] = $this->m_proyectos->obtenerCategorias();
 			$datos['orgpro'] = $this->m_proyectos->obtenerOrganizacion($rfc);
 			$this->load->view('proyecto_selected', $datos);
@@ -69,10 +70,15 @@ class Proyectos extends CI_Controller {
 				$proyecto = $this->m_proyectos->agregarProyecto($rfc, $nombrep, $descri, $category);
 				if($proyecto != 0){
 					$asignar = $this->m_proyectos->asignarProyecto($respo, $proyecto);
+					$query = $this->m_proyectos->viewProyectoDemo($proyecto);
 					$errors = array(
 					array(
 						'campo' => 'group-rfc',
-						'error' => ''
+						'error' => '',
+						'datos' => array(
+								'nombre' => $query->proy_name,
+								'fecha' => $query->fecha_creado,
+							)
 						)
 					);
 					$result = json_encode($errors);
@@ -178,12 +184,14 @@ class Proyectos extends CI_Controller {
 			$idtarea = $this->m_proyectos->nuevaTarea($tarea);
 			if($idtarea != 0){
 				$return = $this->m_proyectos->proyTareas($proid, $idtarea);
-				if($return){
+				$update = $this->m_proyectos->actualizarPorTareas($proid);
+				if($return && $update){
 					$message = array(
 						'status' => 'Complete',
 						'message' => 'Agregado Correctamente',
 						'datos' => array(
-							'tarea' => $tarea
+							'tarea' => $tarea,
+							'avance' => 0
 							)
 						);
 

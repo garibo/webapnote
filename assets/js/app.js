@@ -170,6 +170,7 @@ $(document).ready(function(){
 	*****************************************************************/
 	$('#records-org').on('click', 'a#del', function(){
 		var value = $(this).attr('value');
+		var element = $(this);
 		swal({
 			title: 'Estas seguro?',
 			text: 'Una vez eliminado, ya no podrás recuperarlo.',
@@ -185,7 +186,8 @@ $(document).ready(function(){
 				dataType: 'text',
 				success: function(data) {
 					if(data == 1){
-						location.href="organizaciones";
+						$(element).parent('td').parent('tr').remove();
+						swal("Buen Trabajo!", "Organización eliminada correctamente", "success");
 					}else{
 						swal('Error', 'No se puede eliminar la organización', 'error');
 					}
@@ -232,11 +234,45 @@ $(document).ready(function(){
 								text: value
 							}).appendTo(fila);
 						});
-						$('<td/>',{html: '<a href="/organizaciones/deleteTUser/'+data[0].datos.ausername+'/'+data[0].rfc+'" class="btn-delete"><i class="fi-trash"></i></a><a href="/organizaciones/profileTeam/'+data[0].datos.ausername+'"data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a>'}).css('text-align','center').css('font-size','20px').appendTo(fila);
-						fila.appendTo('#records-organizaciones');
-						swal("Good Job!", "Usuario agregado correctamente", "success");
+						$('<td/>',{html: '<a href="#" id="del" data-user="'+data[0].datos.ausername+'"  data-org="'+data[0].rfc+'" class="btn-delete"><i class="fi-trash"></i></a><a href="/organizaciones/profileTeam/'+data[0].datos.ausername+'"data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a>'}).css('text-align','center').css('font-size','20px').appendTo(fila);
+						fila.appendTo('#body-org');
+						swal("Buen Trabajo!", "Usuario agregado correctamente", "success");
 					}
 			}
+		});
+	});
+
+	/*******************************************
+	* Eliminación de usuarios de una organización
+	* desde el boton de eliminar;
+	*******************************************/
+	$('#body-org').on('click', 'a#del', function(){
+		var org = $(this).data('org');
+		var usr = $(this).data('user');
+		var element = $(this);
+		swal({
+			title: 'Estas seguro?',
+			text: 'Una vez eliminado ya no podras recuperarlo.',
+			type: 'warning',
+			showCancelButton: true, 
+			confirmButtonColor: '#DD6B55',
+			confirmButtonText: 'Si, Eliminar',
+			closeOnConfirm: false,
+			closeOnCancel: true
+		},function(){
+			$.ajax({
+				url: '/organizaciones/deleteTUser/'+usr+'/'+org,
+				dataType: 'json',
+				success: function(data){
+					console.log(data);
+					if(data.value === 1){
+						$(element).parent('td').parent('tr').remove();
+						swal("Buen Trabajo!", "Usuario eliminado correctamente", "success");
+					}else{
+						swal("Error", "No se puede eliminar este usuario, tiene proyectos asignados.", "error");
+					}
+				}
+			});
 		});
 	});
 
@@ -377,7 +413,9 @@ $(document).ready(function(){
 		});
 	});
 
-	// Registro de nuevo proyecto ;
+	/************************************
+	* Registro de nuevo proyecto a la organización.
+	************************************/
 	$('#agregarProy').submit(function(e){
 		var id = document.getElementById('agregarProy');
 		var com = id.getAttribute('data-company');
@@ -402,20 +440,15 @@ $(document).ready(function(){
 
 					if(errors === 0){
 						$('#panel-form-id').slideToggle('slow');
-						setTimeout(function() {
-						var notification = new NotificationFx({
-							message: '<p style="font-size: 14px;">Cambios realizados correctamente. Espere un momento, se volvera a cargar la pagina.</p>',
-							layout: 'growl',
-							effect: 'slide',
-							type: 'notice',
-							onClose: function(){
-								setTimeout(function(){
-									location.href="/proyectos/selected/"+com;
-								}, 200);
-							}
-						});
-						notification.show();
-						}, 100);
+						swal({
+							title: 'Buen Trabajo!',
+							text: 'Proyecto Agregado Correctamente',
+							type: 'success',
+							showCancelButton: false, 
+							closeOnConfirm: true
+						}, function(){
+							location.href='/proyectos/selected/'+com;
+						})
 					}
 
 			}
