@@ -54,9 +54,11 @@ class M_Organizaciones extends CI_Model {
 	}
 
 	public function deleteTU($user){
-		$this->db->where('u_user', $user);
+		$this->db->where('u_email', $user);
 		$this->db->delete('CI_DETALLE_COMPANY');
-		$this->db->where('u_username', $user);
+		$this->db->where('u_email', $user);
+		$this->db->delete('CI_DETALLE_USUARIO');
+		$this->db->where('u_email', $user);
 		return $this->db->delete('CI_USUARIOS');
 	}
 
@@ -67,9 +69,9 @@ class M_Organizaciones extends CI_Model {
 		$this->db->where('CI_USUARIOS.u_username', $user);
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
-			return false;
-		}else{
 			return true;
+		}else{
+			return false;
 		}
 	}
 

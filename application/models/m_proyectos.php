@@ -199,7 +199,26 @@ class M_Proyectos extends CI_Model {
 		}else{
 			return false;
 		}
+	}
 
+	public function tieneTareas($id){
+		$this->db->select('CI_TAREAS.ci_tarea_name AS Titulo');
+		$this->db->from('CI_DETALLE_PROYTAREAS, CI_TAREAS');
+		$this->db->where('CI_DETALLE_PROYTAREAS.ci_tarea_id = CI_TAREAS.ci_tarea_id');
+		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public function deleteProyecto($id){
+		$this->db->where('c_proy_id', $id);
+		$this->db->delete('CI_DETALLE_PROYASIGN');
+		$this->db->where('c_proy_id', $id);
+		return $this->db->delete('CI_PROYECTOS');
 	}
 
 }

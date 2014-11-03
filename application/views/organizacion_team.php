@@ -95,7 +95,7 @@
 										<td><?=$row['apep'];?></td>
 										<td><?=$row['apem'];?></td>
 										<td><?=$row['email']?></td>
-										<td style="text-align: center; font-size: 20px;"><a href="#" id="del" data-org="<?=$this->uri->segment(3);?>" data-user="<?=$row['user']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('organizaciones/profileTeam');?>/<?=$row['user'];?>" data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a></td>
+										<td style="text-align: center; font-size: 20px;"><a href="#" id="del" data-org="<?=$this->uri->segment(3);?>" data-user="<?=$row['user'];?>" data-email="<?=$row['email']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('organizaciones/profileTeam');?>/<?=$row['user'];?>" data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a></td>
 									</tr>
 									<?php endforeach; ?>
 								</tbody>

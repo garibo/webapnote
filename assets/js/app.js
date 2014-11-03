@@ -189,7 +189,7 @@ $(document).ready(function(){
 						$(element).parent('td').parent('tr').remove();
 						swal("Buen Trabajo!", "Organización eliminada correctamente", "success");
 					}else{
-						swal('Error', 'No se puede eliminar la organización', 'error');
+						swal('Lo siento', 'No se puede eliminar la organización', 'error');
 					}
 				}
 			});
@@ -234,7 +234,7 @@ $(document).ready(function(){
 								text: value
 							}).appendTo(fila);
 						});
-						$('<td/>',{html: '<a href="#" id="del" data-user="'+data[0].datos.ausername+'"  data-org="'+data[0].rfc+'" class="btn-delete"><i class="fi-trash"></i></a><a href="/organizaciones/profileTeam/'+data[0].datos.ausername+'"data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a>'}).css('text-align','center').css('font-size','20px').appendTo(fila);
+						$('<td/>',{html: '<a href="#" id="del" data-user="'+data[0].datos.ausername+'" data-email="'+data[0].datos.eemail+'" data-org="'+data[0].rfc+'" class="btn-delete"><i class="fi-trash"></i></a><a href="/organizaciones/profileTeam/'+data[0].datos.ausername+'"data-reveal-id="modal-demo" data-reveal-ajax="true"><i class="fi-torso"></i></a>'}).css('text-align','center').css('font-size','20px').appendTo(fila);
 						fila.appendTo('#body-org');
 						swal("Buen Trabajo!", "Usuario agregado correctamente", "success");
 					}
@@ -249,6 +249,7 @@ $(document).ready(function(){
 	$('#body-org').on('click', 'a#del', function(){
 		var org = $(this).data('org');
 		var usr = $(this).data('user');
+		var mail = $(this).data('email');
 		var element = $(this);
 		swal({
 			title: 'Estas seguro?',
@@ -262,6 +263,8 @@ $(document).ready(function(){
 		},function(){
 			$.ajax({
 				url: '/organizaciones/deleteTUser/'+usr+'/'+org,
+				type: 'POST',
+				data: {email: mail},
 				dataType: 'json',
 				success: function(data){
 					console.log(data);
@@ -269,7 +272,7 @@ $(document).ready(function(){
 						$(element).parent('td').parent('tr').remove();
 						swal("Buen Trabajo!", "Usuario eliminado correctamente", "success");
 					}else{
-						swal("Error", "No se puede eliminar este usuario, tiene proyectos asignados.", "error");
+						swal("Lo siento!", "No se puede eliminar este usuario, tiene proyectos asignados.", "error");
 					}
 				}
 			});
@@ -440,20 +443,48 @@ $(document).ready(function(){
 
 					if(errors === 0){
 						$('#panel-form-id').slideToggle('slow');
-						swal({
-							title: 'Buen Trabajo!',
-							text: 'Proyecto Agregado Correctamente',
-							type: 'success',
-							showCancelButton: false, 
-							closeOnConfirm: true
-						}, function(){
-							location.href='/proyectos/selected/'+com;
-						})
+						$('#agregarProy').reset();
+						var fila = $('<li/>');
+						var chtml = '<div id="block-item"><h6 class="text-center title">'+data[0].datos.nombre+'</h6><div class="info-tasks"><p><b>Sin Tareas</b></p><p><span>'+data[0].datos.fecha+'</span></p></div><div class="opciones"><p><a href="#" class="btn-delete"><i class="fi-trash"></i></a> <a href="#"><i class="fi-eye"></i></a></p></div></div>';
+						$(chtml).appendTo(fila);
+						fila.appendTo('#body-projects');
+						swal("Buen Trabajo!", "Proyecto agregado correctamente", "success");
 					}
 
 			}
 		});
 	});
+
+	/******************************************
+	 * Eliminación de un proyecto por id.
+	 *****************************************/
+	 $('ul.list-projects').on('click', 'a#getParent', function(){
+	 	var proyid = $(this).data('id');
+	 	var element = $(this);
+	 	swal({
+	 		title: 'Estas seguro?',
+	 		text: 'Una vez eliminado, no podrás recuperarlo.',
+	 		type: 'warning',
+	 		showCancelButton: true,
+	 		confirmButtonColor: '#DD6B55',
+	 		confirmButtonText: 'Si, Eliminar',
+	 		closeOnConfirm: false,
+	 		closeOnCancel: true
+	 	}, function(){
+	 		$.ajax({
+	 			url: '/proyectos/delete/'+proyid,
+	 			dataType: 'text',
+	 			success: function(data){
+	 				if(data === '1'){
+	 					$(element).parent('p').parent('div').parent('div').parent('li').remove();
+	 					swal("Muy bien!", "Proyecto eliminado correctamente.", "success");
+	 				}else {
+	 					swal("Lo siento!", "Este proyecto no puede ser eliminado.", "error");
+	 				}
+	 			}
+	 		});
+	 	});
+	 });
 
 	// Agregar Nueva Categoria
 	$('#new-category').submit(function(e){

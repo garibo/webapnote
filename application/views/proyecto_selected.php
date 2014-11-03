@@ -75,7 +75,7 @@
 				<!-- table to projects -->
 				<div class="row">
 					<div class="large-10 column">
-						<ul class="large-block-grid-3">
+						<ul class="large-block-grid-3 list-projects">
 						<?php if(!empty($proyectosActivos)){ ?>
 							<?php foreach($proyectosActivos as $row): ?>
 							<li>
@@ -86,7 +86,7 @@
 										<p><span><?=$row['CreadoEn'];?></span></p>
 									</div>
 									<div class="opciones">
-										<p><a href="#" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+										<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
 									</div>
 								</div>
 							</li>
@@ -102,8 +102,8 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
+						<ul class="large-block-grid-3 list-projects" id="body-projects">
 						<?php if(!empty($proyectosInactivos)): ?>
-							<ul class="large-block-grid-3" id="body-projects">
 								<?php foreach($proyectosInactivos as $row): ?>
 									<li>
 										<div id="block-item">
@@ -113,13 +113,13 @@
 												<p><span><?=$row['CreadoEn'];?></span></p>
 											</div>
 											<div class="opciones">
-												<p><a href="#" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+												<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
 											</div>
 										</div>
 									</li>
 								<?php endforeach;?>
-							</ul>
 						<?php endif; ?>
+							</ul>
 					</div>
 				</div>
 			</div>

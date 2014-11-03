@@ -30,7 +30,9 @@ class Proyectos extends CI_Controller {
 		}
 	}
 	
-	// Agregar un nuevo proyecto a Organización ;
+	/**********************************
+	* Agregar nuevo proyecto a una Organización
+	**********************************/
 	public function agregarProyecto($rfc){
 		if($this->session->userdata('logger') == TRUE){
 			$this->form_validation->set_rules('pname', 'Nombre de Proyecto','trim|xss_clean|required');
@@ -84,6 +86,27 @@ class Proyectos extends CI_Controller {
 					$result = json_encode($errors);
 					echo $result;
 				}
+			}
+		}else{
+			redirect(base_url());
+		}
+	}
+
+	/**********************************************
+	* Eliminar el proyecto de una organización por id.
+	**********************************************/
+	public function delete($id){
+		if($this->session->userdata('logger') == TRUE){
+			$tareas = $this->m_proyectos->tieneTareas($id);
+			if(!$tareas){
+				$delete = $this->m_proyectos->deleteProyecto($id);
+				if($delete){
+					echo 1;
+				}else{
+					echo 0;
+				}
+			}else{
+				echo 0;
 			}
 		}else{
 			redirect(base_url());

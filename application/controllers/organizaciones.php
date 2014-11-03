@@ -184,9 +184,10 @@ class Organizaciones extends CI_Controller {
 
 	public function deleteTUser($user, $rfc){
 		if($this->session->userdata('logger') == TRUE){
+			$email = $this->input->post('email');
 			$query = $this->m_organizaciones->userdelVerification($user);
-			if($query){
-				$this->m_organizaciones->deleteTU($user);
+			if(!$query){
+				$this->m_organizaciones->deleteTU($email);
 				$data = array(
 					'value' => 1
 					);

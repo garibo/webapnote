@@ -78,13 +78,13 @@
 					</div>
 				</div>
 				<div class="row">
-					<div class="large-5 columns">
+					<div class="large-6 columns">
 						<h5 class="subheader">Actividades del Proyecto <a href="#" class="button small radius right" data-options="align: top" data-dropdown="formdrop" aria-controls="formdrop" aria-expanded="false" style="position: absolute; right: 15px; top: -7px;height: 33px; padding: 10px;"><i class="fi-plus" style="padding-right: 5px;"></i> Agregar una Nueva</a></h5>
 						<table class="large-10 column">
 							<thead>
 								<tr>
 									<th>Definición</th>
-									<th width="50">Opciones</th>
+									<th class="text-center" width="150">% Avance</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -92,14 +92,22 @@
 								<?php foreach($tareas as $row): ?>
 									<tr>
 										<td><?=$row['Titulo'];?></td>
-										<td><?=$row['Avance'];?></td>
+										<td class="text-center">
+											<div class="progress success radius" style="margin-bottom: 0 !important;">
+												<span class="meter text-center" style="width: <?=$row['Avance'];?>%; color: white; text-shadow: 0 0 2px #131313;"><?=$row['Avance']?>%</span>
+											</div>
+										</td>
 									</tr>
 								<?php endforeach;?>
 							<?php endif; ?>
 							</tbody>
 						</table>
 					</div>
-					<div class="large-5 columns"></div>
+					<div class="large-4 columns">
+						<div class="panel callout">
+							<p>Tip: Recuerda que para activar un proyecto, es necesario asignarle actividades/tareas.</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
