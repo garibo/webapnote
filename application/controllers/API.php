@@ -42,6 +42,16 @@ class API extends CI_Controller {
 		}
 	}
 
+	//API para activar una cuenta;
+	public function activation($usr){
+		$query = $this->m_mobile->actives($usr);
+		if($query){
+			echo "Este usuario ".$usr." se ha activado correctamente.";
+		}else{
+			echo "Error";
+		}
+	}
+
 	// API Obtencion de Proyectos sin iniciar ;
 	public function proyectosCurso(){
 		$email = $this->input->get('email');

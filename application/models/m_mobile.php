@@ -12,12 +12,19 @@ class M_Mobile extends CI_Model {
 		$this->db->where('u_email', $user);
 		$this->db->where('u_password', $pass);
 		$this->db->where('r_id', 2);
+		$this->db->where('u_status', 1);
 		$query = $this->db->get('CI_USUARIOS');
 		if($query->num_rows() == 1){
 			return true;
 		}else{
 			return false;
 		}
+	}
+
+	public function actives($email) {
+		$data = array('u_status' => 1);
+		$this->db->where('u_username', $email);
+		return $this->db->update('CI_USUARIOS', $data);
 	}
 
 	public function getUsuario($email){
