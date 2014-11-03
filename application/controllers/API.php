@@ -89,4 +89,11 @@ class API extends CI_Controller {
 		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
+	public function verTareas($id) {
+		$query = array();
+		$query = $this->m_mobile->viewTareas($id);
+		$result = json_encode($query);
+		echo $_GET['jsoncallback'].'('.$result.')';
+	}
+
 }

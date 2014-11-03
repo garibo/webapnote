@@ -82,4 +82,17 @@ class M_Mobile extends CI_Model {
 		}
 	}
 
+	public function viewTareas($id){
+		$this->db->select('CI_TAREAS.ci_tarea_name AS Titulo, CI_DETALLE_PROYTAREAS.ci_deta_avance AS Avance');
+		$this->db->from('CI_DETALLE_PROYTAREAS, CI_TAREAS');
+		$this->db->where('CI_DETALLE_PROYTAREAS.ci_tarea_id = CI_TAREAS.ci_tarea_id');
+		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else{
+			return null;
+		}
+	}
+
 }
