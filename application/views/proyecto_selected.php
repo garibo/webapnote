@@ -75,18 +75,20 @@
 				<!-- table to projects -->
 				<div class="row">
 					<div class="large-10 column">
-						<ul class="large-block-grid-3 list-projects">
+						<ul class="large-block-grid-3 list-projects" style="margin-top: 5px;">
 						<?php if(!empty($proyectosActivos)){ ?>
 							<?php foreach($proyectosActivos as $row): ?>
 							<li>
 								<div id="block-item">
-									<h6 class="text-center title"><?=$row['Nombre'];?></h6>
+									<div class="swatch-preview"></div>
+									<h6 class="text-right title"><?=$row['Nombre'];?></h6>
+									<hr />
 									<div class="info-tasks">
 										<p><b><?=$row['Tareas']?> Tareas</b></p>
 										<p><span><?=$row['CreadoEn'];?></span></p>
 									</div>
 									<div class="opciones">
-										<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+										<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 18px !important;padding: 10px !important;" class="fi-x"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
 									</div>
 								</div>
 							</li>
@@ -107,13 +109,15 @@
 								<?php foreach($proyectosInactivos as $row): ?>
 									<li>
 										<div id="block-item">
-											<h6 class="text-center title"><?=$row['Nombre'];?></h6>
+											<div class="swatch-preview swatch-preview-b"></div>
+											<h6 class="text-right title"><?=$row['Nombre'];?></h6>
+											<hr />
 											<div class="info-tasks">
 												<p><b>Sin Tareas</b></p>
 												<p><span><?=$row['CreadoEn'];?></span></p>
 											</div>
 											<div class="opciones">
-												<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete"><i class="fi-trash"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+												<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 18px !important;padding: 10px !important;" class="fi-x"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
 											</div>
 										</div>
 									</li>

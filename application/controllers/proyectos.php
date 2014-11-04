@@ -78,6 +78,7 @@ class Proyectos extends CI_Controller {
 						'campo' => 'group-rfc',
 						'error' => '',
 						'datos' => array(
+								'proyid' => $query->proy_id,
 								'nombre' => $query->proy_name,
 								'fecha' => $query->fecha_creado,
 							)

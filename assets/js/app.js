@@ -445,7 +445,7 @@ $(document).ready(function(){
 						$('#panel-form-id').slideToggle('slow');
 						$('#agregarProy').reset();
 						var fila = $('<li/>');
-						var chtml = '<div id="block-item"><h6 class="text-center title">'+data[0].datos.nombre+'</h6><div class="info-tasks"><p><b>Sin Tareas</b></p><p><span>'+data[0].datos.fecha+'</span></p></div><div class="opciones"><p><a href="#" class="btn-delete"><i class="fi-trash"></i></a> <a href="#"><i class="fi-eye"></i></a></p></div></div>';
+						var chtml = '<div id="block-item"><div class="swatch-preview swatch-preview-c"></div><h6 class="text-right title">'+data[0].datos.nombre+'</h6><hr /><div class="info-tasks"><p><b>Sin Tareas</b></p><p><span>'+data[0].datos.fecha+'</span></p></div><div class="opciones"><p><a href="#" id="getParent" data-id="'+data[0].datos.proyid+'" class="btn-delete btn-absolute"><i style="font-size: 18px !important;padding: 10px !important;" class="fi-x"></i></a> <a href="/proyectos/view/'+data[0].datos.proyid+'/'+com+'"><i class="fi-eye"></i></a></p></div></div>';
 						$(chtml).appendTo(fila);
 						fila.appendTo('#body-projects');
 						swal("Buen Trabajo!", "Proyecto agregado correctamente", "success");
@@ -458,7 +458,8 @@ $(document).ready(function(){
 	/******************************************
 	 * Eliminación de un proyecto por id.
 	 *****************************************/
-	 $('ul.list-projects').on('click', 'a#getParent', function(){
+	 $('ul.list-projects').on('click', 'a#getParent', function(e){
+	 	e.preventDefault();
 	 	var proyid = $(this).data('id');
 	 	var element = $(this);
 	 	swal({

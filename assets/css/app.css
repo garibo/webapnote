@@ -801,7 +801,7 @@ table tr td > a > i {
 	box-shadow: #ecedee 0 -0.1875em 0 inset,rgba(0,0,0,0.04) 0 0.11111em 0;
 	border-radius: 0.25em;
 	position: relative;
-	min-height: 200px;
+	min-height: 245px;
 }
 
 .info-tasks {
@@ -834,9 +834,61 @@ table tr td > a > i {
 #block-item > .title {
 	font-size: 12px;
 	font-weight: 700;
-	padding-top: 25px;
-	padding-bottom: 35px;
+	/*padding-top: 25px;*/
+	/*padding-bottom: 35px;*/
+	position: absolute;
+	bottom: 80px;
+	width: 70%;
+	right: 25px;
+	color: white;
+	text-shadow: 0 1px 2px #2e2e2e;
 }
+
+#block-item > hr {
+	box-shadow: #ecedee 0 .1875em 0 inset,rgba(0,0,0,.04)0 .11111em 0;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	/* border: solid #2e2e2e; */
+	bottom: 45px;
+	/* top: 31px; */
+	/*z-index: 9999;*/
+	margin: 1.55rem 0 1.1875rem!important;
+}
+
+.btn-absolute {
+	top: 4px !important;
+	position: absolute;
+	left: -35px;
+}
+
+#block-item > .swatch-preview {
+	background: #0095DD;
+	width: 284px;
+	height: 155px;
+	position: relative;
+	box-shadow: rgba(0,0,0,0.075) 0 0 0 0.16667em inset;
+	-webkit-border-top-left-radius: 3px;
+	-webkit-border-top-right-radius: 3px;
+	-moz-border-radius-topleft: 3px;
+	-moz-border-radius-topright: 3px;
+	border-top-left-radius: 3px;
+	border-top-right-radius: 3px;
+}
+
+#block-item > .swatch-preview-b {
+	background: #F1AE47 !important;
+}
+
+#block-item > .swatch-preview-c {
+	background: #636468 !important;
+}
+
+#block-item > .swatch-preview-success {
+	background: #8ABA56 !important;
+}
+
+
 /****************************************
 	Add Custom Media Queries
 ****************************************/
