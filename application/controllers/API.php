@@ -96,4 +96,21 @@ class API extends CI_Controller {
 		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
+	public function uploadFiles(){
+		$config['upload_path'] = './uploads/';
+		$config['allowed_types'] = 'jpg|png';
+		$config['max_size'] = '1024 * 8';
+		$config['encrypt_name'] = TRUE;
+
+		$this->load->library('upload', $config);
+		if(!$this->upload->do_upload('file')){
+			echo "Error";
+		}else{
+			$data = array('upload_data' => $this->upload->data());
+			echo "OK";
+			echo $data;
+		}
+		
+	}
+
 }

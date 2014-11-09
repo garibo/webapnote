@@ -17,6 +17,7 @@
 			<div class="row">
 				<div class="large-10 column">
 					<ul class="side-nav">
+						<li><b>Principal</b></li>
 						<li <?php evalActive('dashboard'); ?>><a href="<?=base_url('dashboard');?>"><i class="fi-home icon-menu-nav"></i> Dashboard</a></li>
 						<li <?php evalActive('profile'); ?>><a href="<?=base_url('profile');?>"><i class="fi-torso icon-menu-nav"></i> Mi Perfil</a></li>
 						<li <?php evalActive('proyectos'); ?>><a href="<?=base_url('proyectos');?>"><i class="fi-database icon-menu-nav"></i> Proyectos</a></li>

@@ -1,16 +1,16 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-	// Funcion para resetear formularios;
+	/*Funcion para resetear formularios;*/
 	$.fn.reset = function() {
-		$(this).each(function(){ this.reset(); });
+		$(this).each(function() { this.reset(); });
 	};
 
 	//limit for inputs
-	$('#rfc-input').limitar({limite: 13, id_counter: "counter", clase_alert: "alert"});
+	$('#rfc-input').limitar({limite: 13, id_counter: 'counter', clase_alert: 'alert'});
 	$('#user-inputname').limitar({limite: 10, id_counter: "counter", clase_alert: "alert"});
 	
-	// Nuevo registro de usuarios ;
-	$('#addUsuario').submit(function(e){
+	/*Nuevo registro de usuarios;*/
+	$('#addUsuario').submit(function(e) {
 		e.preventDefault();
 		$.post(
 			"welcome/registrarUsuario", 
