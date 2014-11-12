@@ -539,4 +539,45 @@ $(document).ready(function() {
 		});
 	});
 
+	$('#sub-side-nav').toggle();
+
+	$('#proyectosli').click(function(e){
+		if($('#sub-side-nav').hasClass('open')){
+			//Esta Abierto
+			$('#icon-toggle-icon').css('transform', 'rotate(360deg)');
+			$('#sub-side-nav').removeClass('open');
+			$('#sub-side-nav').slideToggle();
+		}else{
+			//Esta Cerrado
+			$('#sub-side-nav').addClass('open');
+			$('#icon-toggle-icon').css('transform', 'rotate(90deg)');
+			$('#sub-side-nav').slideToggle();
+		}
+		e.preventDefault();
+	});
+
+	$('#sub-side-nav li').on('mouseover', function(e){
+		var hijos = $(e.target).children();
+		hijos.css('color', '#C72626');
+		e.preventDefault();
+	});
+
+	$('#sub-side-nav li').on('mouseleave', function(e){
+		var hijos = $(e.target).children();
+		hijos.css('color', '#909090');
+		e.preventDefault();
+	});
+
+	$('#completesIcon').on('click', function(e){
+		$('#body-projects').slideUp(200);
+		$('#proyectscompletes').slideDown(200);
+		e.preventDefault();
+	});
+
+	$('#pendientesIcon').on('click', function(e){
+		$('#proyectscompletes').slideUp(200);
+		$('#body-projects').slideDown(200);
+		e.preventDefault();
+	});
+
 });

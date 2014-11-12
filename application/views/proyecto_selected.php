@@ -21,7 +21,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Proyectos en <?=$orgpro['c_name'];?> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a></h5>
+						<h5 class="subheader">Proyectos en <?=$orgpro['c_name'];?> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a> <span style="position: absolute; right: 220px; top: -10px; font-size: 32px;"><a href="#" id="completesIcon"><i class="icon-menu3" style="color: #0095DD"></i></a><a href="#" id="pendientesIcon" style="padding-left: 12px;"><i class="icon-menu3" style="color: #F1AE47"></i></a></span></h5>
 					</div>
 				</div>
 				<div class="row" id="panel-form-id">
@@ -75,7 +75,7 @@
 				<!-- table to projects -->
 				<div class="row">
 					<div class="large-10 column">
-						<ul class="large-block-grid-3 list-projects" style="margin-top: 5px;">
+						<ul class="large-block-grid-3 list-projects" id="proyectscompletes" style="margin-top: 5px;">
 						<?php if(!empty($proyectosActivos)){ ?>
 							<?php foreach($proyectosActivos as $row): ?>
 							<li>

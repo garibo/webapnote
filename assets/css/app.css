@@ -11,6 +11,7 @@
 @import url(foundation-icons/foundation-icons.css);
 @import url(../notification/ns-default.css);
 @import url(../notification/ns-style-growl.css);
+@import url(iconmoon.css);
 
 /*************************************
 	Add Custom Styles for Foundation
@@ -32,6 +33,26 @@ h1, h2, h3, h4, h5, h6 {
 textarea{
 	line-height: 1.5em;
 	font-size: 13px;
+}
+
+input[type=date]:focus, 
+input[type=datetime-local]:focus, 
+input[type=datetime]:focus, 
+input[type=email]:focus, 
+input[type=month]:focus, 
+input[type=number]:focus, 
+input[type=password]:focus, 
+input[type=search]:focus, 
+input[type=tel]:focus, 
+input[type=text]:focus, 
+input[type=time]:focus, 
+input[type=url]:focus, 
+input[type=week]:focus, 
+textarea:focus{
+	
+	background: #fafafa;
+	/* border-color: #999; */
+	outline: 0;
 }
 
 .button {
@@ -79,11 +100,11 @@ a:hover {
 	/*Other Change*/
 	overflow: hidden;
 	z-index: 2;
-	background: #2E2E2E;
+	background: #121213;
 	padding-top: 10px;
 	color: #CECECE;
-	border-right: 1px solid rgb(19, 19, 19);
-	box-shadow: 0 0 0 3px rgb(32, 31, 31);
+	border-right: 1px solid #000000;
+	box-shadow: 0 0 0 3px #101010;
 }
 
 .app-content-main {
@@ -309,8 +330,8 @@ color: rgb(87, 87, 87);
 .side-nav{
 	margin: -30px;
 	margin-top: 0px;
-	border-top: 1px solid #3D3D3D;
-	box-shadow: 0 -1px #000;
+	/*border-top: 1px solid #3D3D3D;
+	box-shadow: 0 -1px #000;*/
 	padding:0 !important;
 }
 
@@ -318,11 +339,14 @@ color: rgb(87, 87, 87);
 	z-index: 9999;
 	position: relative;
 	margin: 0 !important;
+	font-weight: 700;
+	padding-left: 40px;
 	/*margin-top: 5px !important;*/
 	/*border-top: 1px solid #242424;*/
 	/*box-shadow: 0 0 1px 0 #505050;*/
-	/*border-bottom: 1px solid #242424;*/
-	transition: .2s all ease-in;
+	/*border-bottom: 1px solid #0D0D0D;*/
+	transition: .1s all ease-out, .1s all ease-in;
+	-webkit-transition: .1s all ease-out, .1s all ease-in;
 }
 
 .side-nav li a {
@@ -330,28 +354,39 @@ color: rgb(87, 87, 87);
 	padding-top: 15px;
 	padding-bottom: 15px;
 	padding-right: 30px;
+	color: #909090 !important;
 	text-shadow:0 1px 0 #0E0E0E;
 }
 
 .side-nav li:hover {
-	background: #3F3F3F;
-	box-shadow: inset 0 0px 3px 0 #5E5E5E;
+	background: #1D1D1D;*/
+	box-shadow: inset 5px 0px 0px 0 #C72626;
+	border-left: 3px solid #C72626;
 	/*border-top: 1px solid #242424;*/
 	/*border-bottom: 1px solid #242424;*/
 }
 
+
 .active {
-	background: #201F1F;
-	box-shadow: inset 0 0px 3px 0 #3A3A3A !important;
-	border-top: 1px solid #131313 !important;
-	border-bottom: 1px solid #131313 !important;
+	background: #080808;
+	box-shadow: inset 0px 0 1px 0 #000000, 0px 0px 0 #000000;
+	border-left: 3px solid #C72626 !important;
+	/*border-top: 1px solid #131313 !important;*/
+	/*border-bottom: 1px solid #131313 !important;*/
 }
 
 .active:hover {
-	background: #201F1F !important;
-	box-shadow: inset 0 0px 3px 0 #3A3A3A !important;
-	border-top: 1px solid #131313 !important;
-	border-bottom: 1px solid #131313 !important;
+	background: #080808 !important;
+	/*box-shadow: inset 0px 0 1px 0 #000000, 0px 1px 0 #000000 !important;*/
+	border-left: 3px solid #C72626 !important;
+	/*border-top: 1px solid #131313 !important;*/
+	/*border-bottom: 1px solid #131313 !important;*/
+}
+
+.side-nav li.active>a:first-child:not(.button) {
+	color: #C72626 !important;
+	font-weight: bold;
+	text-shadow: 1px 2px 0 #000000;
 }
 
 .dash-app-profile{
@@ -364,7 +399,11 @@ color: rgb(87, 87, 87);
 }
 
 .icon-menu-nav {
-	margin-right: 20px;
+	/*margin-right: 20px;*/
+	position: absolute;
+	top: 15px;
+	left: 35px;
+	font-size: 20px;
 }
 
 .f-dropdown {
@@ -894,6 +933,111 @@ table tr td > a > i {
 	background: #8ABA56 !important;
 }
 
+.separator-li{
+	height: 30px;
+	/*background: #2e2e2e;*/
+	/*border-top: 1px solid #080808;*/
+	/*border-bottom: 1px solid #000000;*/
+	/*box-shadow: inset 0 -1px 0 #373737,0 1px 0 #1A1A1A;*/
+}
+
+.separator-li:hover {
+	border: 0 !important;
+	background: none !important;
+}
+
+.separator-li a{
+	padding: 6px!important;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight: 400;
+	padding-left: 0px !important;
+	color: #666 !important;
+	text-shadow: none !important;
+}
+
+.categoryli {
+	background: #000000 !important;
+	height: 45px;
+}
+
+.categoryli:hover {
+	/*background: none !important;*/
+	border-left: 0 !important;
+	padding-left: 35px !important;
+}
+
+#icon-toggle-icon {
+	width: 20px;
+	text-align: center;
+	color: #909090;
+	height: 20px;
+	font-size: 20px;
+	/*border: 1px solid #060606;*/
+	text-shadow: none;
+	/*background: #5C5C5C;*/
+	display: block;
+	border-radius: 50%;
+	position: absolute;
+	top: 15px;
+	right: 10px;
+}
+
+.panel.callout {
+	background: #FAFAFA !important;
+	border-radius: 5px !important;
+	border: 1px solid #D5D5D5 !important;
+	box-shadow: 0 2px 3px #E2E2E2 !important;
+}
+
+.panel-item {
+	background: #FAFAFA !important;
+	border: 1px solid #DBDBDB;
+	border-radius: 3px;
+	box-shadow: 0 2px 2px #ECECEC;
+}
+
+.panel-item > h6 {
+	text-transform: uppercase;
+	font-size: 11px;
+	font-weight: 700;
+	text-align: center;
+	color: #A6A6A6;
+	text-shadow: 0 1px 0 #FFFFFF;
+}
+
+.panel-item > h4 {
+	text-align: center;
+	font-weight: 700;
+	color: #949494;
+}
+
+.panel-date {
+	background: #3399E0 !important;
+	border: 1px solid #1F73AE;
+}
+
+.panel-date h6{
+	color: #FFFFFF;
+	font-size: 20px;
+	padding-top: 30px;
+}
+
+.panel-date h5 {
+	color: #FFFFFF;
+	font-size: 60px;
+	padding-bottom: 30px;
+	text-align: center;
+	font-weight: 700 !important;
+}
+
+.panel-date h4 {
+	color: #FFFFFF;
+}
+
+ul.example-orbit > li.active {
+	border: 0 !important;
+}
 
 /****************************************
 	Add Custom Media Queries

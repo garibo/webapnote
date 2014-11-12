@@ -24,7 +24,7 @@
 						<br />
 						<div class="large-2 columns">
 							<div id="th-profile" class="th" style="position: relative;">
-								<a href="#" class="button" id="uploadfile" style="display: none; position: absolute; font-size: 9px !important; text-align: left;padding-left: 38px; bottom:-20px; background: rgba(0,0,0,0.4);"><i class="fi-camera" style="position: absolute;top: 14px; left: 12px; font-size: 24px;"></i> Update Profile Picture</a>
+								<a href="#" class="button" id="uploadfile" style="box-shadow: none !important;display: none; position: absolute; font-size: 9px !important; text-align: left;padding-left: 38px; bottom:-20px; background: rgba(0,0,0,0.4);"><i class="fi-camera" style="position: absolute;top: 14px; left: 12px; font-size: 24px;"></i> Update Profile Picture</a>
 								<img class="" id="preview" src="<?=base_url('assets/img/thumbs');?>/<?=$this->session->userdata('u_photo');?>" height="175" width="175" />
 							</div>
 							<form id="formfile">

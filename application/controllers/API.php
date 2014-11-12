@@ -100,17 +100,47 @@ class API extends CI_Controller {
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'jpg|png';
 		$config['max_size'] = '1024 * 8';
-		$config['encrypt_name'] = TRUE;
 
 		$this->load->library('upload', $config);
 		if(!$this->upload->do_upload('file')){
 			echo "Error";
 		}else{
-			$data = array('upload_data' => $this->upload->data());
+			$data = array();
+			$data = $this->upload->data();
+			log_message('error', $data['file_name']);
 			echo "OK";
-			echo $data;
 		}
 		
+	}
+
+	public function registerImage(){
+		$titulo = $this->input->get('titulo');
+		$descri = $this->input->get('descripcion');
+		$image = $this->input->get('image');
+		$tarea = $this->input->get('idtarea');
+		$id = $this->m_mobile->insertImageURL($image, $tarea);
+		if($id != 0){
+			$query = $this->m_mobile->detalleImageURL($id, $titulo, $descri);
+			if($query){
+				$msg = array(
+					'mensaje' => 'Imagen Guardada Correctamente'
+					);
+				$result = json_encode($msg);
+				echo $_GET['jsoncallback'].'('.$result.')';
+			}
+		}
+	}
+
+	/* Obtener imagenes por tarea especificada */
+	public function getWorks($id){
+		
+		$query = $this->m_mobile->getWorksImages($id);
+		if($query != null){
+			$result = json_encode($query);
+		}else{
+			$result = json_encode($query);
+		}
+		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
 }

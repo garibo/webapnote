@@ -9,7 +9,10 @@
 		<script type="text/javascript" src="<?=base_url('assets/js/foundation/foundation.reveal.js');?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/foundation/foundation.tooltip.js');?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/limitar.js');?>"></script>
-		<script type="text/javascript" srC="<?=base_url('assets/js/sweet-alert.min.js');?>"></script>
+		<script type="text/javascript" src="<?=base_url('assets/js/sweet-alert.min.js');?>"></script>
+		<script type="text/javascript" src="<?=base_url('assets/js/Chart.min.js');?>"></script>
+		<script type="text/javascript" src="<?=base_url('assets/js/imagenesChart.min.js')?>"></script>
+		<script type="text/javascript" src="<?=base_url('assets/js/proyectosChart.min.js')?>"></script>
 		<script>$(document).foundation();</script>
 	</body>
 </html>

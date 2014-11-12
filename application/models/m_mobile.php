@@ -97,4 +97,39 @@ class M_Mobile extends CI_Model {
 		}
 	}
 
+	public function insertImageURL($nombre, $idtarea){
+		$data = array(
+			'c_image_name' => $nombre, 
+			'c_tarea_id' => $idtarea
+			);
+		$this->db->trans_start();
+		$this->db->insert('CI_IMAGES', $data);
+		$tarea = $this->db->insert_id();
+		$this->db->trans_complete();
+
+		return $tarea;
+	}
+
+	public function detalleImageURL($id, $title, $descripcion){
+		$data = array(
+			'c_image_id' => $id,
+			'c_title_image' => $title,
+			'c_detalle_descripcion' => $descripcion
+			);
+		return $this->db->insert('CI_DETALLE_IMAGE', $data);
+	}
+
+	public function getWorksImages($id) {
+		$this->db->select('CI_IMAGES.c_image_name AS URL, CI_DETALLE_IMAGE.c_title_image AS Titulo, CI_DETALLE_IMAGE.c_detalle_descripcion AS Descripcion');
+		$this->db->from('CI_IMAGES, CI_DETALLE_IMAGE');
+		$this->db->where('CI_IMAGES.c_image_id = CI_DETALLE_IMAGE.c_image_id');
+		$this->db->where('CI_IMAGES.c_tarea_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else{
+			return null;
+		}
+	}
+
 }
