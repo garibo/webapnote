@@ -120,10 +120,23 @@ class M_Mobile extends CI_Model {
 	}
 
 	public function getWorksImages($id) {
-		$this->db->select('CI_IMAGES.c_image_name AS URL, CI_DETALLE_IMAGE.c_title_image AS Titulo, CI_DETALLE_IMAGE.c_detalle_descripcion AS Descripcion');
+		$this->db->select('CI_IMAGES.c_image_name AS URL, CI_DETALLE_IMAGE.c_title_image AS Titulo, CI_DETALLE_IMAGE.c_detalle_descripcion AS Descripcion, CI_IMAGES.c_image_id AS ImageID');
 		$this->db->from('CI_IMAGES, CI_DETALLE_IMAGE');
 		$this->db->where('CI_IMAGES.c_image_id = CI_DETALLE_IMAGE.c_image_id');
 		$this->db->where('CI_IMAGES.c_tarea_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else{
+			return null;
+		}
+	}
+
+	public function getInformationImage($id){
+		$this->db->select('CI_DETALLE_IMAGE.c_title_image AS Titulo, CI_DETALLE_IMAGE.c_detalle_descripcion AS Descripcion, CI_IMAGES.c_image_name AS NameURL');
+		$this->db->from('CI_IMAGES, CI_DETALLE_IMAGE');
+		$this->db->where('CI_IMAGES.c_image_id = CI_DETALLE_IMAGE.c_image_id');
+		$this->db->where('CI_IMAGES.c_image_id', $id);
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			return $query->result_array();

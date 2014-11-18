@@ -143,4 +143,15 @@ class API extends CI_Controller {
 		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
+	/* Obtener información de una imagen */
+	public function getImageInformation($id){
+		$query = $this->m_mobile->getInformationImage($id);
+		if($query != null){
+			$result = json_encode($query);
+		}else{
+			$result = json_encode($query);
+		}
+		echo $_GET['jsoncallback'].'('.$result.')';
+	}
+
 }

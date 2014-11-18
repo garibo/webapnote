@@ -568,16 +568,4 @@ $(document).ready(function() {
 		e.preventDefault();
 	});
 
-	$('#completesIcon').on('click', function(e){
-		$('#body-projects').slideUp(200);
-		$('#proyectscompletes').slideDown(200);
-		e.preventDefault();
-	});
-
-	$('#pendientesIcon').on('click', function(e){
-		$('#proyectscompletes').slideUp(200);
-		$('#body-projects').slideDown(200);
-		e.preventDefault();
-	});
-
 });

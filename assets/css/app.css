@@ -1039,6 +1039,11 @@ ul.example-orbit > li.active {
 	border: 0 !important;
 }
 
+.subheader {
+	font-weight: 700;
+	font-size: 18px;
+}
+
 /****************************************
 	Add Custom Media Queries
 ****************************************/

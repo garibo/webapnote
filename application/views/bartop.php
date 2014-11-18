@@ -7,7 +7,7 @@
 					</div>
 					<div class="large-3 columns"></div>
 					<div class="large-3 columns">
-						<a href="#" data-options="align: left" data-dropdown="app-menu-options" class="app-icon-widget right"><i class="fi-widget"></i></a>
-						<a href="#" data-options="align: left" data-dropdown="app-notify" class="app-icon-comment right"><i class="fi-comment"></i><span class="badge-icon-noty">10</span></a>
+						<a href="#" data-options="align: left" data-dropdown="app-menu-options" class="app-icon-widget right"><i class="icon-cog3"></i></a>
+						<!-- <a href="#" data-options="align: left" data-dropdown="app-notify" class="app-icon-comment right"><i class="fi-comment"></i><span class="badge-icon-noty">10</span></a> -->
 					</div>
 				</div>

@@ -21,7 +21,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Proyectos en <?=$orgpro['c_name'];?> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a> <span style="position: absolute; right: 220px; top: -10px; font-size: 32px;"><a href="#" id="completesIcon"><i class="icon-menu3" style="color: #0095DD"></i></a><a href="#" id="pendientesIcon" style="padding-left: 12px;"><i class="icon-menu3" style="color: #F1AE47"></i></a></span></h5>
+						<h5 class="subheader">Proyectos <!-- en <?=$orgpro['c_name'];?> --> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a></h5>
 					</div>
 				</div>
 				<div class="row" id="panel-form-id">
@@ -75,7 +75,7 @@
 				<!-- table to projects -->
 				<div class="row">
 					<div class="large-10 column">
-						<ul class="large-block-grid-3 list-projects" id="proyectscompletes" style="margin-top: 5px;">
+						<ul class="large-block-grid-3 list-projects" id="body-projects" style="margin-top: 5px;">
 						<?php if(!empty($proyectosActivos)){ ?>
 							<?php foreach($proyectosActivos as $row): ?>
 							<li>
@@ -88,23 +88,11 @@
 										<p><span><?=$row['CreadoEn'];?></span></p>
 									</div>
 									<div class="opciones">
-										<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 18px !important;padding: 10px !important;" class="fi-x"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+										<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 22px !important; position: absolute; top: -3px;" class="icon-trash2"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="icon-paper"></i></a></p>
 									</div>
 								</div>
 							</li>
 						<?php endforeach;?>
-						</ul>
-						<?php }else {?>
-						<div class="panel callout">
-							<p class="text-center" style="line-height: inherit !important;"><i class="fi-annotate" style="font-size: 50px;color: #AAAAAA;"></i></p>
-							<h6 style="color: #AAAAAA;" class="text-center">Usted no tiene proyectos en esta Organización.</h6>
-						</div>
-						<?php	} ?>
-					</div>
-				</div>
-				<div class="row">
-					<div class="large-10 column">
-						<ul class="large-block-grid-3 list-projects" id="body-projects">
 						<?php if(!empty($proyectosInactivos)): ?>
 								<?php foreach($proyectosInactivos as $row): ?>
 									<li>
@@ -117,13 +105,19 @@
 												<p><span><?=$row['CreadoEn'];?></span></p>
 											</div>
 											<div class="opciones">
-												<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 18px !important;padding: 10px !important;" class="fi-x"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="fi-eye"></i></a></p>
+												<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 22px !important; position: absolute; top: -3px;" class="icon-trash2"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="icon-paper"></i></a></p>
 											</div>
 										</div>
 									</li>
 								<?php endforeach;?>
 						<?php endif; ?>
-							</ul>
+						</ul>
+						<?php }else {?>
+						<div class="panel callout">
+							<p class="text-center" style="line-height: inherit !important;"><i class="fi-annotate" style="font-size: 50px;color: #AAAAAA;"></i></p>
+							<h6 style="color: #AAAAAA;" class="text-center">Usted no tiene proyectos en esta Organización.</h6>
+						</div>
+						<?php	} ?>
 					</div>
 				</div>
 			</div>

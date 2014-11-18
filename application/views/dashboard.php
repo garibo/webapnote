@@ -22,25 +22,25 @@
 					<div class="large-2 columns">
 						<div class="panel panel-item">
 							<h6>Usuarios</h6>
-							<h4><i class="icon-user7"></i> <?=$allUsers;?></h4>
+							<h4><i class="icon-user7"></i> <?=$allusers;?></h4>
 						</div>
 					</div>
 					<div class="large-2 columns">
 						<div class="panel panel-item">
 							<h6>Organizaciones</h6>
-							<h4><i class="icon-briefcase"></i> <?=$allCompany->Organizaciones;?></h4>
+							<h4><i class="icon-briefcase"></i> <?=$allcompany->Organizaciones;?></h4>
 						</div>
 					</div>
 					<div class="large-2 column">
 						<div class="panel panel-item">
 							<h6>Proyectos</h6>
-							<h4><i class="icon-bulb"></i> <?=$allProjects->Proyectos;?></h4>
+							<h4><i class="icon-bulb"></i> <?=$allprojects->Proyectos;?></h4>
 						</div>
 					</div>
 					<div class="large-2 column">
 						<div class="panel panel-item">
 							<h6>Imágenes Alojadas</h6>
-							<h4><i class="icon-camera6"></i> <?=$allImages->Imagenes;?></h4>
+							<h4><i class="icon-camera6"></i> <?=$allimages->Imagenes;?></h4>
 						</div>
 					</div>
 				</div>
