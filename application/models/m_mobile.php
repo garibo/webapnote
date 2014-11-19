@@ -145,4 +145,19 @@ class M_Mobile extends CI_Model {
 		}
 	}
 
+	public function getImagesByWork($id) {
+		$this->db->select('CI_DETALLE_PROYTAREAS.ci_tarea_id AS Id, CI_TAREAS.ci_tarea_name AS Titulo, CI_DETALLE_PROYTAREAS.ci_deta_avance AS Avance, COUNT(*) AS Imagenes');
+		$this->db->from('CI_DETALLE_PROYTAREAS, CI_TAREAS, CI_IMAGES');
+		$this->db->where('CI_DETALLE_PROYTAREAS.ci_tarea_id = CI_TAREAS.ci_tarea_id');
+		$this->db->where('CI_TAREAS.ci_tarea_id = CI_IMAGES.c_tarea_id');
+		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id', $id);
+		$this->db->group_by('Titulo');
+		$query = $this->db->get();
+		if($query->num_rows() > 0 ){
+			return $query->result_array();
+		}else{
+			return null;
+		}
+	}
+
 }

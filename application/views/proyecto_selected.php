@@ -21,7 +21,8 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Proyectos <!-- en <?=$orgpro['c_name'];?> --> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a></h5>
+						<h6 style="position: absolute; right: 230px; font-size: 12px;"><i class="fi-stop" style="color: #8ABA56; padding-right: 10px; padding-left: 10px;"></i> Proyectos Terminados <i class="fi-stop" style="color: #F1AE47; padding-right: 10px; padding-left: 10px;"></i> Proyectos Pendientes <i class="fi-stop" style="color: #9D201E; padding-right: 10px; padding-left: 10px;"></i>Proyectos en Curso</h6>
+						<h5 class="subheader-title">Proyectos <!-- en <?=$orgpro['c_name'];?> --> <a href="#" id="btn-open-pro" class="button radius tiny right btn-new"><i></i>Crear Nuevo Proyecto</a></h5>
 					</div>
 				</div>
 				<div class="row" id="panel-form-id">

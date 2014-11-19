@@ -154,4 +154,15 @@ class API extends CI_Controller {
 		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
+	/* Obtener las imagenes correspondientes a una Tarea */
+	public function getImagesByWork($proyecto){
+		$query = $this->m_mobile->getImagesByWork($proyecto);
+		if($query != null){
+			$result = json_encode($query);
+		}else{
+			$result = json_encode($query);
+		}
+		echo $_GET['jsoncallback'].'('.$result.')';
+	}
+
 }

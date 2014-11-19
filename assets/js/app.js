@@ -107,7 +107,7 @@ $(document).ready(function() {
 					$('<td/>', {html: '<a href="#" id="del" value="'+data[0].datos.arfc+'" class="btn-delete"><i class="fi-trash"></i></a> <a href="/organizaciones/edit/'+data[0].datos.arfc+'"><i class="fi-pencil"></i></a>'}).css('text-align', 'center').css('font-size', '20px').appendTo(fila);
 					fila.appendTo('#records-org');
 					swal({
-						title: 'Good Job',
+						title: 'Buen Trabajo',
 						type: 'success',
 						text: 'Organización agregada correctamente',
 						showCancelButton: false, 

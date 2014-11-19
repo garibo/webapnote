@@ -22,7 +22,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Información del Proyecto</h5>
+						<h5 class="subheader-title">Información del Proyecto</h5>
 						<table class="large-10 column" id="infotable">
 							<thead>
 								<tr>
@@ -77,9 +77,10 @@
 						</table>
 					</div>
 				</div>
+				<br />
 				<div class="row">
 					<div class="large-6 columns">
-						<h5 class="subheader">Actividades del Proyecto <a href="#" class="button small radius right" data-options="align: top" data-dropdown="formdrop" aria-controls="formdrop" aria-expanded="false" style="position: absolute; right: 15px; top: -7px;height: 33px; padding: 10px;"><i class="fi-plus" style="padding-right: 5px;"></i> Agregar una Nueva</a></h5>
+						<h5 class="subheader-title">Actividades del Proyecto <a href="#" class="button small radius right" data-options="align: top" data-dropdown="formdrop" aria-controls="formdrop" aria-expanded="false" style="position: absolute; right: 15px; top: -7px;height: 33px; padding: 10px;"><i class="fi-plus" style="padding-right: 5px;"></i> Agregar una Nueva</a></h5>
 						<table class="large-10 column">
 							<thead>
 								<tr>

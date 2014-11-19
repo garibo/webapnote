@@ -20,7 +20,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Proyectos </h5>
+						<h5 class="subheader-title">Proyectos </h5>
 						<div class="form-select large-5 options-sel">
 							<select id="org-options" name="org">
 								<option value="0">Selecciona una Organización</option>

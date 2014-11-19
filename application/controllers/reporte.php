@@ -88,7 +88,7 @@ class Reporte extends CI_Controller {
 					}
 					$this->pdf->Image(base_url('uploads/'.$data['URL']), 20, $this->pdf->GetY() + 25, $iwidth, $iheight);
 					$this->pdf->SetLeftMargin(120);
-					$this->pdf->SetFIllColor(255,255,255);
+					$this->pdf->SetFillColor(255,255,255);
 					$this->pdf->Ln(30);
 					$this->pdf->SetFont('Arial', 'B', 11);
 					$this->pdf->MultiCell(75, 5, $data['Titulo'], 0, 'J', false);
