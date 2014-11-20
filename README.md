@@ -14,20 +14,20 @@ Diseñar, desarrollar e implementar una aplicación móvil funcional con la tecn
 ####Documentación
 
 ###### Como iniciar
-Tu puedes clonar el proyecto, en el directorio raíz de tu servidor web. Lo puedes hacer con el siguiente comando: 
+Tu puedes clonar el proyecto, en el directorio raíz de tu servidor web. Lo puedes hacer con el siguiente comando:
 ```bash
-# Acceso por Medio SSH, de lo contrario, utiliza el Enlace HTTPS;
+# Acceso por medio SSH o utiliza el medio HTTPS para clonarlo;
 $ git clone git@github.com:coderdiaz/webapnote
 ```
-Recuerda respetar los términos de licencia de la obra que se describen al final. Si necesitas la base de datos del proyecto, solicitala a este e-mail: [javier.diaz.internaut@gmail.com](mailto:javier.diaz.internaut@gmail.com)
 
-###### Configuración
-Para hacer mostrar de forma efectiva y con URL Amigables es recomendable configurar la sobrescritura de direcciones con `htaccess` tal como lo muestra en la documentación de [CodeIgniter](https://ellislab.com/codeigniter/user-guide/general/urls.html) en la sección de `Removing the index.php file`.
+###### Configuración del Entorno
+Para hacer mostrar de forma efectiva y con URL Amigables es recomendable configurar la sobrescritura de direcciones con el archivo `.htaccess` tal como lo muestra en la [Documentación de CodeIgniter](https://ellislab.com/codeigniter/user-guide/general/urls.html) en la sección de `Removing the index.php file`.
 ```
 RewriteEngine on
 RewriteCond $1 !^(index\.php|assets|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L]
 ```
+Recuerda respetar los términos de licencia de la obra que se describen al final. Si necesitas la base de datos del proyecto, solicitala a este e-mail: [javier.diaz.internaut@gmail.com](mailto:javier.diaz.internaut@gmail.com)
 
 #### Herramientas de Desarrollo
 1. [CodeIgniter v2.1.4](http://github.com/EllisLab/CodeIgniter)
@@ -35,6 +35,7 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 3. [jQuery v2.1.0](http://jquery.com)
 4. [Modernizr v2.7.2](http://modernizr.com)
 5. [SweetAlert](http://tristanedwards.me/sweetalert)
+6. [FPDF v1.7](http://fpdf.org)
 
 #### Screenshots
 
@@ -43,11 +44,10 @@ RewriteRule ^(.*)$ index.php/$1 [L]
 ![image](screenshots/APNOTEWEB19112014.jpg)
 
 ###### Aplicación Móvil
-![image](assets/img/mobile/mobile3.jpg) 
-![image](assets/img/mobile/mobile4.jpg) 
+![image](screenshots/APNOTEWEB201120142.jpg)
 
 #### Licencia
 ![Licencia](http://i.creativecommons.org/l/by-nc-nd/4.0/88x31.png)
 
-Copyright &copy; 2014 
+Copyright &copy; 2014
 Esta obra está bajo una [Licencia Creative Commons Atribución-NoComercial-SinDerivadas 4.0 Internacional](http://creativecommons.org/licenses/by-nc-nd/4.0/). Este proyecto fue liberado solo para Uso Didáctico y Aprendizaje. Desarrollado por el Equipo Creativapps, MX.
