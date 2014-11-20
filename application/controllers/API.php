@@ -96,6 +96,36 @@ class API extends CI_Controller {
 		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
+	public function updateTarea($id){
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$timestamp = mdate($datestring, $time); 
+
+		$result = $this->m_mobile->updateTareaTime($id, $timestamp);
+		if($result){
+			$arreglo = array(
+				'type' => 1,
+				'message' => 'Actualización Correcta');
+			$data = json_encode($arreglo);
+			echo $_GET['jsoncallback'].'('.$data.')';
+		}
+	}
+
+	public function updateProyecto($id){
+		$datestring = '%Y-%m-%d %h:%i:%s';
+		$time = time();
+		$timestamp = mdate($datestring, $time); 
+		$result = $this->m_mobile->updateProyecto($id, $timestamp);
+		if($result){
+			$arreglo = array(
+				'type' => 1,
+				'message' => 'Enviado a Revisión'
+				);
+			$data = json_encode($arreglo);
+			echo $_GET['jsoncallback'].'('.$data.')';
+		}
+	}
+
 	public function uploadFiles(){
 		$config['upload_path'] = './uploads/';
 		$config['allowed_types'] = 'jpg|png';
@@ -157,8 +187,13 @@ class API extends CI_Controller {
 	/* Obtener las imagenes correspondientes a una Tarea */
 	public function getImagesByWork($proyecto){
 		$query = $this->m_mobile->getImagesByWork($proyecto);
+		$total = $this->m_mobile->getTotalWorks($proyecto);
 		if($query != null){
-			$result = json_encode($query);
+			$data = array(
+				'total' => intval($total->Total),
+				'objetos' => $query
+				);
+			$result = json_encode($data);
 		}else{
 			$result = json_encode($query);
 		}

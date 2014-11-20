@@ -44,6 +44,7 @@ class M_Mobile extends CI_Model {
 		$this->db->where('CI_CATEGORIAS.id_category = CI_PROYECTOS.id_category');
 		$this->db->where('CI_DETALLE_PROYASIGN.c_proy_id = CI_PROYECTOS.c_proy_id');
 		$this->db->where('CI_PROYECTOS.c_fecha_ini =  "0000-00-00 00:00:00"');
+		$this->db->where('CI_PROYECTOS.c_proy_success <> 1');
 		$this->db->where('CI_PROYECTOS.c_proy_bandera', 1);
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
@@ -60,6 +61,7 @@ class M_Mobile extends CI_Model {
 		$this->db->where('CI_CATEGORIAS.id_category = CI_PROYECTOS.id_category');
 		$this->db->where('CI_DETALLE_PROYASIGN.c_proy_id = CI_PROYECTOS.c_proy_id');
 		$this->db->where('CI_PROYECTOS.c_fecha_ini <>  "0000-00-00 00:00:00"');
+		$this->db->where('CI_PROYECTOS.c_proy_success <> 1');
 		$this->db->where('CI_PROYECTOS.c_proy_bandera', 1);
 		$query = $this->db->get();
 		if($query->num_rows() > 0) {
@@ -95,6 +97,23 @@ class M_Mobile extends CI_Model {
 		}else{
 			return null;
 		}
+	}
+
+	public function updateTareaTime($id, $date){
+		$data = array(
+			'c_fecha_ini' => $date
+			);
+		$this->db->where('c_proy_id', $id);
+		return $this->db->update('CI_PROYECTOS', $data);
+	}
+
+	public function updateProyecto($id, $date){
+		$data = array(
+			'c_fecha_end' => $date,
+			'c_proy_success' => 1
+			);
+		$this->db->where('c_proy_id', $id);
+		return $this->db->update('CI_PROYECTOS', $data);
 	}
 
 	public function insertImageURL($nombre, $idtarea){
@@ -155,6 +174,19 @@ class M_Mobile extends CI_Model {
 		$query = $this->db->get();
 		if($query->num_rows() > 0 ){
 			return $query->result_array();
+		}else{
+			return null;
+		}
+	}
+
+	public function getTotalWorks($id){
+		$this->db->select('COUNT(*) AS Total');
+		$this->db->from('CI_DETALLE_PROYTAREAS, CI_TAREAS');
+		$this->db->where('CI_DETALLE_PROYTAREAS.ci_tarea_id = CI_TAREAS.ci_tarea_id');
+		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->first_row();
 		}else{
 			return null;
 		}
