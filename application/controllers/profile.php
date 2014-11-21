@@ -10,7 +10,9 @@ class Profile extends CI_Controller {
 
 	public function index() {
 		if($this->session->userdata('logger') == TRUE){
+			$email = $this->session->userdata('u_email');
 			$data['categorias'] = $this->m_profile->obtenerCategorias();
+			$data['profileData'] = $this->m_profile->obtenerInformacion($email);
 			$data['micats'] = $this->m_profile->obtenerCatsxuser();
 			$this->load->view('profile', $data);
 		}else{

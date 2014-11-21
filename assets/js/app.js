@@ -326,18 +326,7 @@ $(document).ready(function() {
 
 					if(errors === 0){
 						setTimeout(function() {
-						var notification = new NotificationFx({
-							message: '<p style="font-size: 14px;">Cambios realizados correctamente. Espere un momento, se volvera a cargar la pagina.</p>',
-							layout: 'growl',
-							effect: 'slide',
-							type: 'notice',
-							onClose: function(){
-								setTimeout(function(){
-									location.href="profile";
-								}, 200);
-							}
-						});
-						notification.show();
+							location.href='profile';
 						}, 100);
 					}
 
@@ -534,7 +523,11 @@ $(document).ready(function() {
 			type: 'POST',
 			data: {tarea: activity, proyid: proid},
 			success: function(response){
-			console.log(response);
+				$('#form-activity').reset();
+				var fila = $('<tr/>');
+				var html = '<td>'+response.datos.tarea+'</td><td><a href="#" id="deletetarea" data-id="'+response.datos.id+'"><span style="font-size: 20px;" class="icon-trash2"></span></a></td>';
+				$(html).appendTo(fila);
+				fila.appendTo('#body-tareas');
 			}
 		});
 	});

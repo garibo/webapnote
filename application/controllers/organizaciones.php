@@ -23,7 +23,7 @@ class Organizaciones extends CI_Controller {
 	* @author 		Javier Diaz
 	***************************************/
 	public function addO(){
-		$this->form_validation->set_rules('rfc', 'RFC de Compañía', 'trim|required|xss_clean|min_length[12]|max_length[13]|is_unique[CI_COMPANY.c_rfc]');
+		$this->form_validation->set_rules('rfc', 'RFC de Compañía', 'trim|required|xss_clean|min_length[12]|max_length[13]|is_unique[CI_COMPANY.c_rfc]|callback_validateRFC[livestock.rfc]');
 		$this->form_validation->set_rules('name', 'Nombre', 'trim|required|xss_clean');
 		$this->form_validation->set_rules('phone', 'Telefono', 'trim|required|numeric|exact_length[10]|xss_clean');
 		$this->form_validation->set_rules('descripcion', 'Descripcion', 'trim|xss_clean');
@@ -104,6 +104,15 @@ class Organizaciones extends CI_Controller {
 				$result = json_encode($errors);
 				echo $result;
 			}
+		}
+	}
+
+	public function validateRFC($str){
+		$regex = "/^[a-zA-Z]{3,4}(\d{6})((\D|\d){3})?$/";
+		if(!preg_match($regex, $str)){
+			$this->form_validation->set_message('validateRFC', 'Introduce un formato de RFC Correcto'); return false;
+		}else{
+			return true;
 		}
 	}
 

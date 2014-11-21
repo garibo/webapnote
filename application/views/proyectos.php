@@ -35,7 +35,7 @@
 					<div class="large-10 column">
 						<div id="content-proyecto" class="panel callout">
 							<p class="text-center" style="line-height: inherit !important;"><i class="fi-annotate" style="font-size: 50px;color: #AAAAAA;"></i></p>
-							<h6 style="color: #AAAAAA;" class="text-center">Para comenzar selecciona una Organización</h6>
+							<h6 style="color: #AAAAAA;" class="text-center">Para comenzar Selecciona una Organización o <a href="<?=base_url('organizaciones');?>">Crea una nueva organización</a></h6>
 						</div>
 					</div>
 				</div>

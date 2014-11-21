@@ -7,6 +7,18 @@ class M_Profile extends CI_Model {
 		$this->load->database('default');
 	}
 
+	public function obtenerInformacion($email){
+		$this->db->select('u_email,u_username, u_nombre, u_apep, u_apem, u_photo');
+		$this->db->from('CI_USUARIOS');
+		$this->db->where('CI_USUARIOS.u_email', $email);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->first_row();
+		}else{
+			return null;
+		}
+	}
+
 	public function update($email, $nombre, $apep, $apem){
 		$data = array(
 			'u_nombre' => $nombre, 

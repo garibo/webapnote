@@ -75,6 +75,7 @@
 				<div class="row">
 					<div class="large-10 column">
 						<h5 class="subheader">Equipo de Trabajo <a href="#" id="reg-user-t" class="button radius tiny right btn-new"><i></i> Añadir Usuario</a></h5>
+						<br/>
 						<?php if(!empty($team)): ?>
 							<table class="large-10">
 								<thead>

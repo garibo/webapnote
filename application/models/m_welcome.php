@@ -20,6 +20,25 @@ class M_Welcome extends CI_Model {
 		return $this->db->insert('CI_USUARIOS', $data);
 	}
 
+	public function addCurrentLogs($email){
+		$this->db->select('u_loggins');
+		$this->db->from('CI_USUARIOS');
+		$this->db->where('CI_USUARIOS.u_email', $email);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->first_row();
+		}else{
+			return null;
+		}
+	}
+
+	public function updateCurrentLogs($email, $logs){
+		$data = array(
+			'u_loggins' => $logs);
+		$this->db->where('u_email', $email);
+		return $this->db->update('CI_USUARIOS', $data);
+	}
+
 	public function signIn($email, $pass){
 		$this->db->where('u_email', $email);
 		$this->db->where('u_password', $pass);

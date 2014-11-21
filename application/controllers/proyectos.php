@@ -132,10 +132,10 @@ class Proyectos extends CI_Controller {
 	
 	public function categorias($start=0){
 		if($this->session->userdata('logger') == TRUE){
-			$datos['categorias'] = $this->m_proyectos->obtenerCategoriaslimit(11, $start);
+			$datos['categorias'] = $this->m_proyectos->obtenerCategoriaslimit(9, $start);
 			$config['base_url'] = base_url().'proyectos/categorias/';
 			$config['total_rows'] = $this->m_proyectos->get_categories_count();
-			$config['per_page'] = 11;
+			$config['per_page'] = 9;
 
 			$config['num_tag_open'] = '<li>';
 			$config['num_tag_close'] = '</li>';
@@ -215,7 +215,8 @@ class Proyectos extends CI_Controller {
 						'message' => 'Agregado Correctamente',
 						'datos' => array(
 							'tarea' => $tarea,
-							'avance' => 0
+							'avance' => 0,
+							'id' => $idtarea
 							)
 						);
 

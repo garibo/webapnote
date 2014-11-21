@@ -51,7 +51,7 @@
 				</div>
 				<div class="row">
 					<div class="large-10 column">
-						<h5 class="subheader">Categorías de Proyectos <a href="#" id="reg-user-t" class="button radius tiny right" style="position: absolute; right: 15px; top: -8px;"><i></i> Agregar Categoría</a></h5>
+						<h5 class="subheader" style="margin-bottom: 15px;">Categorías de Proyectos <a href="#" id="reg-user-t" class="button radius tiny right" style="position: absolute; right: 15px; top: -8px;"><i></i> Agregar Categoría</a></h5>
 						<?php if(!empty($categorias)): ?>
 							<table class="large-10">
 								<thead>

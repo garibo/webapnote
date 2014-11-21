@@ -80,24 +80,26 @@
 				<br />
 				<div class="row">
 					<div class="large-6 columns">
-						<h5 class="subheader-title">Actividades del Proyecto <a href="#" class="button small radius right" data-options="align: top" data-dropdown="formdrop" aria-controls="formdrop" aria-expanded="false" style="position: absolute; right: 15px; top: -7px;height: 33px; padding: 10px;"><i class="fi-plus" style="padding-right: 5px;"></i> Agregar una Nueva</a></h5>
+						<h5 class="subheader-title">Actividades del Proyecto <a href="#" class="button small radius right" data-options="align: top" data-dropdown="formdrop" aria-controls="formdrop" aria-expanded="false" style="position: absolute; right: 15px; top: -17px;height: 33px; padding: 10px;"><i class="fi-plus" style="padding-right: 5px;"></i> Agregar una Nueva</a></h5>
 						<table class="large-10 column">
 							<thead>
 								<tr>
 									<th>Definición</th>
-									<th class="text-center" width="150">% Avance</th>
+									<!-- <th width="150">% Avance</th> -->
+									<th></th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="body-tareas">
 							<?php if($tareas != null): ?>
 								<?php foreach($tareas as $row): ?>
 									<tr>
 										<td><?=$row['Titulo'];?></td>
-										<td class="text-center">
+										<!-- <td>
 											<div class="progress success radius" style="margin-bottom: 0 !important;">
 												<span class="meter text-center" style="width: <?=$row['Avance'];?>%; color: white; text-shadow: 0 0 2px #131313;"><?=$row['Avance']?>%</span>
 											</div>
-										</td>
+										</td> -->
+										<td><a href="#" id="deletetarea" data-id="<?=$row['id']?>"><span style="font-size: 20px;" class="icon-trash2"></span></a></td>
 									</tr>
 								<?php endforeach;?>
 							<?php endif; ?>
@@ -114,7 +116,7 @@
 		</div>
 	</div>
 	<div id="formdrop" data-dropdown-content class="f-dropdown medium content" aria-hidden="true" tabindex="-1">
-		<form id="form-activity" style="padding-top: 10px;" data-id-proyecto="<?=$infoProyecto['proy_id'];?>">
+		<form id="form-activity" style="padding-top: 2px;" data-id-proyecto="<?=$infoProyecto['proy_id'];?>">
 			<div class="row">
 				<div class="large-7 columns">
 					<label>

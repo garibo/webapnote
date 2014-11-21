@@ -22,7 +22,7 @@
 					<div class="large-10 column">
 						<h5 class="subheader">Mis Organizaciones <a href="#" data-reveal-id="app-add-org" class="button radius tiny right btn-new"><i></i> Añadir Organización</a></h5>
 					</div>
-				</div>
+				</div><br />
 				<div class="row">
 					<div class="large-10 column">
 						<?php if(!empty($datos)){ ?>

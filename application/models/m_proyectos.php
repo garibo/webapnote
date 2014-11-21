@@ -189,7 +189,7 @@ class M_Proyectos extends CI_Model {
 	}
 
 	public function obtenerTareas($id){
-		$this->db->select('CI_TAREAS.ci_tarea_name AS Titulo, CI_DETALLE_PROYTAREAS.ci_deta_avance AS Avance');
+		$this->db->select('CI_TAREAS.ci_tarea_id AS id, CI_TAREAS.ci_tarea_name AS Titulo, CI_DETALLE_PROYTAREAS.ci_deta_avance AS Avance');
 		$this->db->from('CI_DETALLE_PROYTAREAS, CI_TAREAS');
 		$this->db->where('CI_DETALLE_PROYTAREAS.ci_tarea_id = CI_TAREAS.ci_tarea_id');
 		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id', $id);

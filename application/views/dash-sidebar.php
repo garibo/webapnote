@@ -24,8 +24,7 @@
 						<li class="separator-li"><a href="#">Administración</a></li>
 						<li <?php evalActive('proyectos'); ?> id="proyectosli"><a href="#"><i class="icon-bulb icon-menu-nav"></i> Proyectos <i id="icon-toggle-icon" class="icon-arrow-right9"></i></a></li>
 						<ul id="sub-side-nav" class="side-nav" style="margin-bottom: 0 !important;margin-left: -40px;padding-left: 10px">
-							<li class="categoryli"><a style="padding: 12px 100px;" href="<?=base_url('proyectos');?>"><i class="icon-lab2 icon-menu-nav" style="top: 13px; left: 100px;"></i>En Proceso</a></li>
-							<li class="categoryli"><a style="padding: 12px 100px;" href="<?=base_url('proyectos');?>"><i class="icon-check icon-menu-nav" style="top: 13px; left: 100px;"></i>Terminados</a></li>
+							<li class="categoryli"><a style="padding: 12px 100px;" href="<?=base_url('proyectos');?>"><i class="icon-lab2 icon-menu-nav" style="top: 13px; left: 100px;"></i>Ver Proyectos</a></li>
 							<li class="categoryli"><a style="padding: 12px 100px;" href="<?=base_url('proyectos');?>/categorias"><i class="icon-stack2 icon-menu-nav" style="top: 13px; left: 100px;"></i> Categorias</a></li>
 						</ul>
 						<li <?php evalActive('organizaciones'); ?>><a href="<?=base_url('organizaciones');?>"><i class="icon-briefcase icon-menu-nav"></i> Organizaciones</a></li>

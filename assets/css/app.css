@@ -419,8 +419,9 @@ color: rgb(87, 87, 87);
 
 #app-menu-options li {
 	margin-top: 5px;
-	margin-bottom: 7px;
+	margin-bottom: 5px;
 	font-weight: 700;
+	transition: .1s all ease;
 }
 
 #app-menu-options li a{
@@ -434,6 +435,8 @@ color: rgb(87, 87, 87);
 
 #app-menu-options li:hover {
 	margin-bottom: 5px;
+	/* margin-left: initial; */
+	border-left: 3px solid #696969;
 }
 
 .f-dropdown li:hover, .f-dropdown li:focus {
@@ -522,19 +525,29 @@ color: rgb(87, 87, 87);
 	padding: 19px 5px 20px 5px;
 }
 
+ul#app-menu-options {
+	max-width: 250px;
+}
+
 .f-dropdown.drop-left:before, .f-dropdown.drop-left:after {
 	content: "" !important;
 	transform: rotateZ(-90deg) !important;
 }
 
+.f-dropdown li:focus, .f-dropdown li:hover {
+	border-bottom: 0 !important;
+}
+
 .f-dropdown.drop-left:before {
 	top: -12px !important;
 	right: 10px !important;
+	/* display: none; */
 }
 
 .f-dropdown.drop-left:after {
 	top:-15px !important;
 	right: 9px !important;
+	/* display: none; */
 }
 
 .f-dropdown {
@@ -794,18 +807,26 @@ ul.nav-side li > span a{
 }
 
 #formdrop {
-	height: 100px !important;
-	top: 431px !important;
+	height: 85px !important;
+	top: 485px !important;
 	box-shadow: 0 0px 7px #CECECE !important;
+	border-radius: 5px;
 }
 
 .button {
-	box-shadow: 0 4px #A23826 !important;
+	box-shadow: 0 4px #832E2D, inset 0 1px 0 #FF615F !important;
+	text-shadow: 0 1px 1px #832E2D !important;
 }
 
-/*.button:active {
-	margin-top: 2px !important;
-}*/
+.button:hover {
+	background: #E75250 !important;
+}
+
+.button:focus{
+	background: #E75250 !important;
+	box-shadow: 0 4px #832E2D, inset 0 1px 0 #FF615F !important;
+	text-shadow: 0 1px 1px #832E2D !important;
+}
 
 table tr td {
 	padding: 12px 10px !important;
@@ -828,7 +849,7 @@ table tr td > a > i {
 .btn-new {
 	position: absolute !important; 
 	right: 15px !important; 
-	top: -8px !important;
+	top: -3px !important;
 	width: 190px !important;
 }
 

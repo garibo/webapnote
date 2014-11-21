@@ -11,7 +11,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		if($this->session->userdata('logger') == TRUE){
-			$this->load->view('dashboard');
+			redirect(base_url('dashboard'));
 		}else {
 			$this->load->view('welcome');
 		}
@@ -64,6 +64,16 @@ class Welcome extends CI_Controller {
 			$getsign = $this->m_welcome->signIn($email, $pass);
 			if($getsign) {
 				$auth = $this->m_welcome->signAuth($email, $pass);
+				
+				$logs = $this->m_welcome->addCurrentLogs($email);
+				if($logs->u_loggins != null){ 
+					$number = intval($logs->u_loggins)+1;
+					$query = $this->m_welcome->updateCurrentLogs($email, $number);
+				}else{
+					$number = 1;
+					$query = $this->m_welcome->updateCurrentLogs($email, $number);
+				}
+				
 				if($auth->r_id == 2){echo 0;}else{
 				$dato = array(
 					'logger' => TRUE, 
