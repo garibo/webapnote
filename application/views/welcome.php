@@ -1,5 +1,10 @@
 <?php $this->load->view('header'); ?>
-
+		<!-- Incorrect Datas Login -->
+			<div class="large-4 large-centered columns" id="bad-msg">
+				<div class="bad">
+					<p><i class="fi-x" style="font-size: 15px; padding-right: 5px;"></i> Correo Electrónico y/o Contraseña Incorrecta, Intenta nuevamente</p>
+				</div>
+			</div>
 		<!-- Main body -->
 		<div class="app-main-body clearfix">
 			<div class="small-4 medium-4 large-2 columns app-sidebar-main">
@@ -52,10 +57,19 @@
 								<!-- Slider Here -->
 								<ul class="example-orbit" data-orbit data-options="animation_speed: 500;timer_speed: 5000; pause_on_hover: true; resume_on_mouseout: true; navigation_arrows: false; slide_number: false; bullets: false; timer: true;">
 									<li>
-										<img src="<?=base_url('assets/img/mobile/dashboard.png');?>" alt="Screenshot 2">
+										<img src="<?=base_url('assets/img/mobile/mobile1.jpg');?>" alt="Screenshot 2">
 									</li>
 									<li class="active">
-										<img src="<?=base_url('assets/img/mobile/login.png');?>" alt="Screenshot 1">
+										<img src="<?=base_url('assets/img/mobile/mobile2.jpg');?>" alt="Screenshot 1">
+									</li>
+									<li>
+										<img src="<?=base_url('assets/img/mobile/mobile3.jpg');?>" alt="Screenshot 1">
+									</li>
+									<li>
+										<img src="<?=base_url('assets/img/mobile/mobile4.jpg');?>" alt="Screenshot 1">
+									</li>
+									<li>
+										<img src="<?=base_url('assets/img/mobile/mobile5.jpg');?>" alt="Screenshot 1">
 									</li>
 								</ul>
 							</div>
@@ -64,12 +78,12 @@
 					<div class="large-6 columns">
 						<h2 style="font-weight: 800;">La aplicación para gestionar tus proyectos, organizar tus reportes y aumentar tu productividad</h2>
 						<br />
-						<h4 class="subheader text-justify">Únete y mira por qué aumenta tu productividad y tu eficiencia en el trabajo, una interfaz amigable
+						<h4 style="color: #FFFFFF; text-shadow: 1px 1px 5px #000000;" class="subheader text-justify">Únete y mira por qué aumenta tu productividad y tu eficiencia en el trabajo, una interfaz amigable
 						que te encantara.</h4>
 						<br />
-						<span><a href="#" class="large-10 button radius" data-reveal-id="register-modal" data-reveal>Inscribete Gratis</a></span>
+						<span><a href="#" class="large-5 button radius right" style="margin-top: 15px;" data-reveal-id="register-modal" data-reveal>Inscribete Gratis</a></span>
 						<br />
-						<p>Disponible en <a href="#">Android</a> e Internet. Por ahora!</p>
+						<p style="color: #FFFFFF; text-shadow: 1px 1px 5px #000000;text-align: left;">Disponible en <a href="#" style="color: #FDE534;">Android</a> y Web. Por ahora!</p>
 					</div>
 				</div>
 				<div class="row app-services-sub">

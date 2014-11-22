@@ -262,7 +262,7 @@
         if (animData.pop) {
           css.top = $(window).scrollTop() - el.data('offset') + 'px';
           var end_css = {
-            top: $(window).scrollTop() + el.data('css-top') + 'px',
+            top: $(window).scrollTop() - 50 + el.data('css-top') + 'px',
             opacity: 1
           };
 

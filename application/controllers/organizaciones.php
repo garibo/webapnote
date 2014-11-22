@@ -10,6 +10,7 @@ class Organizaciones extends CI_Controller {
 
 	public function index() {
 		$data['datos'] = $this->m_organizaciones->addOrg();
+		$data['clases'] = $this->m_organizaciones->mdl_clases();
 		if($this->session->userdata('logger') == TRUE){
 			$this->load->view('organizaciones', $data);
 		}else {
@@ -17,40 +18,117 @@ class Organizaciones extends CI_Controller {
 		}
 	}
 
+	/***************************************
+	* @function 	Agregar nuevas organizaciones
+	* @author 		Javier Diaz
+	***************************************/
 	public function addO(){
-		$this->form_validation->set_rules('rfc', 'RFC de Compañía', 'trim|required|xss_clean|min_length[12]|max_length[13]|is_unique[CI_COMPANY.c_rfc]');
+		$this->form_validation->set_rules('rfc', 'RFC de Compañía', 'trim|required|xss_clean|min_length[12]|max_length[13]|is_unique[CI_COMPANY.c_rfc]|callback_validateRFC[livestock.rfc]');
 		$this->form_validation->set_rules('name', 'Nombre', 'trim|required|xss_clean');
-		$this->form_validation->set_rules('phone', 'Telefono', 'trim|required|numeric|max_length[7]|xss_clean');
+		$this->form_validation->set_rules('phone', 'Telefono', 'trim|required|numeric|exact_length[10]|xss_clean');
 		$this->form_validation->set_rules('descripcion', 'Descripcion', 'trim|xss_clean');
+		$this->form_validation->set_rules('clases', 'clases', 'xss_clean|required');
 
-		$this->form_validation->set_error_delimiters('<p><i class="fi-x-circle icon-error"></i>', '</p>');
+		$this->form_validation->set_message('required', 'Este campo es requerido');
+		$this->form_validation->set_message('numeric', 'Este campo solo acepta números');
+		$this->form_validation->set_message('max_length','No puede exceder de <span class="hide">%d</span>%d caracteres');
+		$this->form_validation->set_message('min_length', 'Este campo debe tener mínimo <span class="hide">%d</span>%d caracteres');
+		$this->form_validation->set_message('exact_length', 'Este campo debe tener <span class="hide">%d</span>%d caracteres');
+
+		$this->form_validation->set_error_delimiters('','');
 		if($this->form_validation->run() == FALSE) {
-			echo validation_errors();
+			$errors = array(
+					array(
+						'campo' => 'group-rfc',
+						'error' => form_error('rfc')
+						),
+					array(
+						'campo' => 'group-phone',
+						'error' => form_error('phone')
+						),
+					array(
+						'campo' => 'group-name',
+						'error' => form_error('name')
+						),
+					array(
+						'campo' => 'group-descripcion',
+						'error' => form_error('descripcion')
+						), 
+					array(
+						'campo' => 'group-clases', 
+						'error' => form_error('clases')
+						)
+				);
+
+			$result = json_encode($errors);
+			echo $result;
+
 		}else {
 			$rfc = $this->input->post('rfc');
 			$name = $this->input->post('name');
 			$phone = $this->input->post('phone');
 			$des = $this->input->post('descripcion');
+			$clas = $this->input->post('clases');
 
-			$query = $this->m_organizaciones->insertOrg($rfc, $name, $phone, $des);
+			$query = $this->m_organizaciones->insertOrg($rfc, $name, $phone, $des, $clas);
+			
+			switch($clas) {
+				case 1: 
+					$clase = "A";
+					break;
+				case 2:
+				 	$clase = "B";
+					break;
+				case 3:
+					$clase = "C";
+					break;
+				case 4: 
+					$clase = "D";
+					break;
+			};
+
 			if($query){
-				echo 1;
-			}else{
-				echo 0;
+				$errors = array(
+					array(
+						'campo' => 'group-rfc',
+						'error' => '',
+						'datos' => array(
+							'arfc' => $rfc, 
+							'bnombre' => $name,
+							'cdescripcion' => $des,
+							'dtelefono' => $phone,
+							'eclase' => $clase
+							)
+						)
+					);
+				$result = json_encode($errors);
+				echo $result;
 			}
 		}
 	}
 
+	public function validateRFC($str){
+		$regex = "/^[a-zA-Z]{3,4}(\d{6})((\D|\d){3})?$/";
+		if(!preg_match($regex, $str)){
+			$this->form_validation->set_message('validateRFC', 'Introduce un formato de RFC Correcto'); return false;
+		}else{
+			return true;
+		}
+	}
+
+	// Eliminar una Organización;
 	public function delete($rfc) {
 		$query = $this->m_organizaciones->checkOrg($rfc);
 		$result = $this->m_organizaciones->checkProjOrg($rfc);
 		if($query && $result){
 			$query = $this->m_organizaciones->deleteOrg($rfc);
+			echo '1';
 		}else{
-			redirect(base_url('organizaciones'));
+			echo '0';
 		}
 	}
 
+	//Editar una organización;
 	public function edit($rfc) {
 		if($this->session->userdata('logger') == TRUE){
 			$data['datos'] = $this->m_organizaciones->addOrg();
@@ -61,16 +139,17 @@ class Organizaciones extends CI_Controller {
 		}	
 	}
 
+	// Actualizacion de las Organizaciones ;
 	public function update($rfc){
 		if($this->session->userdata('logger') == TRUE){
-			$this->form_validation->set_rules('ephone','Telefono', 'trim|xss_clean|numeric|max_length[7]');
+			$this->form_validation->set_rules('ephone','Telefono', 'trim|xss_clean|numeric|max_length[10]');
 			$this->form_validation->set_message('numeric', 'El Campo %s solo puede contener datos numericos.');
 			$this->form_validation->set_message('max_length','El Campo %s debe contener máximo %d caracteres.');
 			$this->form_validation->set_error_delimiters('','');
 			if($this->form_validation->run() == 	FALSE){
 				$data['datos'] = $this->m_organizaciones->addOrg();
 				$data['porg'] = $this->m_organizaciones->getOrg($rfc);
-				$data['validation'] = array( 'validacion' => validation_errors());
+				$data['validation'] = array( 'validacion' => validation_errors() );
 				$this->load->view('organizacion_edit', $data);
 			}else{
 				$name = $this->input->post('ename');
@@ -89,17 +168,20 @@ class Organizaciones extends CI_Controller {
 		}
 	}
 
+	// Ver equipo de trabajo de una Organizacion ;
 	public function team($rfc) {
 		if($this->session->userdata('logger') == TRUE){
 			$data['datos'] = $this->m_organizaciones->addOrg();
 			$data['team'] = $this->m_organizaciones->addTeam($rfc);
 			$data['porg'] = $this->m_organizaciones->getOrg($rfc);
+			$data['clases'] = $this->m_organizaciones->mdl_clases();
 			$this->load->view('organizacion_team', $data);
 		}else{
 			redirect(base_url());
 		}
 	}
 
+	// Perfiles de Usuarios
 	public function profileTeam($user){
 		if($this->session->userdata('logger') == TRUE){
 			$data['prteam'] = $this->m_organizaciones->viewTeamU($user);
@@ -109,11 +191,21 @@ class Organizaciones extends CI_Controller {
 		}
 	}
 
-	public function deleteTUser($user, $segment){
+	public function deleteTUser($user, $rfc){
 		if($this->session->userdata('logger') == TRUE){
-			$query = $this->m_organizaciones->deleteTU($user);
-			if($query){
-				redirect(base_url('organizaciones/team/'.$segment));
+			$email = $this->input->post('email');
+			$query = $this->m_organizaciones->userdelVerification($user);
+			if(!$query){
+				$this->m_organizaciones->deleteTU($email);
+				$data = array(
+					'value' => 1
+					);
+				echo json_encode($data);
+			}else{
+				$data = array(
+					'value' => 0
+					);
+				echo json_encode($data);
 			}
 		}else{
 			redirect(base_url());
@@ -124,19 +216,45 @@ class Organizaciones extends CI_Controller {
 	public function updateUsers($rfc){
 		if($this->session->userdata('logger') == TRUE){
 			$this->form_validation->set_rules('t_email', 'Email', 'trim|required|valid_email|xss_clean|is_unique[CI_USUARIOS.u_email]');
-			$this->form_validation->set_rules('t_username', 'Nombre de Usuario', 'trim|min_length[8]|max_length[10]|required|xss_clean|is_unique[CI_USUARIOS.u_username]');
+			$this->form_validation->set_rules('t_username', 'Nombre de Usuario', 'trim|min_length[6]|max_length[10]|required|xss_clean|is_unique[CI_USUARIOS.u_username]');
 			$this->form_validation->set_rules('t_name', 'Nombre', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('t_apep', 'Apellido Paterno', 'trim|required|xss_clean');
 			$this->form_validation->set_rules('t_apem', 'Apellido Materno', 'trim|xss_clean');
 			//$this->form_validation->set_rules('t_pass', 'Contraseña', 'trim|xss_clean|required');
 
-			$this->form_validation->set_error_delimiters('<div class="alert-box warning radius" data-alert>', '<a href="" class="close">&times;</a></div>');
+			$this->form_validation->set_message('required', 'Este campo es requerido');
+			$this->form_validation->set_message('is_unique', 'Este valor ya existe');
+			$this->form_validation->set_message('max_length','No puede exceder de <span class="hide">%d</span>%d caracteres');
+			$this->form_validation->set_message('min_length', 'Este campo debe tener mínimo <span class="hide">%d</span>%d caracteres');
+			$this->form_validation->set_message('valid_email', 'Introduce un email válido');
+			$this->form_validation->set_error_delimiters('', '');
 			if($this->form_validation->run() == FALSE){
-				$data['datos'] = $this->m_organizaciones->addOrg();
-				$data['team'] = $this->m_organizaciones->addTeam($rfc);
-				$data['porg'] = $this->m_organizaciones->getOrg($rfc);
-				$data['validation'] = array( 'validacion' => validation_errors());
-				$this->load->view('organizacion_team', $data);
+				$errors = array(
+					array(
+						'campo' => 'group-email',
+						'error' => form_error('t_email')
+						), 
+					array(
+						'campo' => 'group-username', 
+						'error' => form_error('t_username')
+						), 
+					array(
+						'campo' => 'group-name', 
+						'error' => form_error('t_name')
+						), 
+					array(
+						'campo' => 'group-apep', 
+						'error' => form_error('t_apep')
+						), 
+					array(
+						'campo' => 'group-apem', 
+						'error' => form_error('t_apem')
+						)
+					);
+
+				$result = json_encode($errors);
+				echo $result;
+
 			}else{
 				$email = $this->input->post('t_email');
 				$username = $this->input->post('t_username');
@@ -148,13 +266,22 @@ class Organizaciones extends CI_Controller {
 
 				$query = $this->m_organizaciones->iAddTeam($email, $username, $nombre, $apep, $apem, $pass, $rol, $rfc);
 				if($query){
-					$data['datos'] = $this->m_organizaciones->addOrg();
-					$data['team'] = $this->m_organizaciones->addTeam($rfc);
-					$data['porg'] = $this->m_organizaciones->getOrg($rfc);
-					$data['query'] = array( 'result' => 1 );
-					$this->load->view('organizacion_team', $data);
-				}else {
-					echo 0;
+					$errors = array(
+						array(
+							'campo' => 'group-rfc',
+							'error' => '',
+							'datos' => array(
+								'ausername' => $username,
+								'bnombre' => $nombre, 
+								'capep' => $apep, 
+								'dapem' => $apem,
+								'eemail' => $email,
+								),
+							'rfc' => $rfc
+							)
+						);
+					$result = json_encode($errors);
+					echo $result;
 				}
 			}
 		}else{

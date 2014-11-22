@@ -15,7 +15,7 @@
 |
 */
 
-$config['base_url'] = "http://".$_SERVER['HTTP_HOST']."/webapnote/";
+$config['base_url'] = "http://".$_SERVER['HTTP_HOST']."/";
 //$config['base_url'] = "http://".$_SERVER['HTTP_HOST']."/";
 
 
@@ -248,13 +248,13 @@ $config['encryption_key'] = '3Nb8Ie3HDx85rRytrl2eJFSE6rxjMqCR';
 |
 */
 $config['sess_cookie_name']		= 'CI_SESSIONS';
-$config['sess_expiration']		= 7200;
+$config['sess_expiration']		= 1800;
 $config['sess_expire_on_close']	= FALSE;
 $config['sess_encrypt_cookie']	= TRUE;
 $config['sess_use_database']	= TRUE;
 $config['sess_table_name']		= 'CI_SESSIONS';
 $config['sess_match_ip']		= TRUE;
-$config['sess_match_useragent']	= FALSE;
+$config['sess_match_useragent']	= TRUE;
 $config['sess_time_to_update']	= 300;
 
 /*
@@ -282,7 +282,7 @@ $config['cookie_secure']	= FALSE;
 | COOKIE data is encountered
 |
 */
-$config['global_xss_filtering'] = FALSE;
+$config['global_xss_filtering'] = TRUE;
 
 /*
 |--------------------------------------------------------------------------

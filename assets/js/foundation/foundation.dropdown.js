@@ -11,7 +11,6 @@
       align: 'bottom',
       is_hover: false,
       opened: function(){
-        $('.app-icon-widget').addClass('app-icon-widget-base');
       },
       closed: function(){}
     },
