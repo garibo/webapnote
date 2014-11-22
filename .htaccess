@@ -1,4 +1,5 @@
 RewriteEngine on
+<<<<<<< HEAD
 RewriteCond $1 !^(index\.php|images|assets|uploads|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L]
 RewriteCond %{REQUEST_FILENAME} 	^.*assets.*\.(py|php|pl|cgi|bin|sh)$
@@ -7,3 +8,14 @@ RewriteCond %{REQUEST_FILENAME} 	^.*uploads.*\.(py|php|pl|cgi|bin|sh)$
 RewriteRule (.*)									[F,NS,L]
 RewriteCond %{REQUEST_FILENAME} 	!-f
 RewriteRule .											/ [L]
+=======
+
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+RewriteCond %{REQUEST_FILENAME} 	^.*assets.*\.(py|php|pl|cgi|bin|sh)$
+RewriteRule (.*)									[F,NS,L]
+
+RewriteCond %{REQUEST_FILENAME} 	!-f
+RewriteRule .											 [L]
+>>>>>>> 71fd01c7c40f2fb1c09088c37a6dfe13b82b27ce

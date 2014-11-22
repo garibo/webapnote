@@ -60,9 +60,21 @@
 										<label>Apellido Materno</label>
 										<input type="text" name="t_apem" placeholder="">
 										<i class="fi-align-left app-icon-input-edit"></i>
+<<<<<<< HEAD
 										<span class="warning label alert radius span-error hide"></span>
+=======
 									</div>
-								</div>
+								</div>					
+								<!-- <div class="row">
+									<div class="large-7 columns">
+										<input type="password" name="t_pass" placeholder="Contraseña">
+										<i class="fi-lock app-icon-input-edit"></i>
+									</div>
+									<div class="large-3 columns">
+										<input type="button" id="rpwd" class="large-10 button success tiny radius" value="Generar Contraseña">
+>>>>>>> 71fd01c7c40f2fb1c09088c37a6dfe13b82b27ce
+									</div>
+								</div> -->
 								<div class="row">
 									<div class="large-10 columns">
 										<input id="sub-team" type="submit" class="button radius small large-10" value="Registrar Usuario al Equipo de Trabajo">

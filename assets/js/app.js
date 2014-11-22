@@ -2,12 +2,17 @@ $(document).ready(function() {
 
 	/*Funcion para resetear formularios;*/
 	$.fn.reset = function() {
+<<<<<<< HEAD
 		$(this).each(function() { this.reset(); });
 	};
 
 	//limit for inputs
 	$('#rfc-input').limitar({limite: 13, id_counter: 'counter', clase_alert: 'alert'});
 	$('#user-inputname').limitar({limite: 10, id_counter: "counter", clase_alert: "alert"});
+=======
+		$(this).each(function(){ this.reset(); });
+	};
+>>>>>>> 71fd01c7c40f2fb1c09088c37a6dfe13b82b27ce
 	
 	/*Nuevo registro de usuarios;*/
 	$('#addUsuario').submit(function(e) {
@@ -97,6 +102,7 @@ $(document).ready(function() {
 
 				if(errors === 0){
 					$('#add-form-org').reset();
+<<<<<<< HEAD
 					var fila = $('<tr/>');
 					$.each(data[0].datos, function(key, value){
 						$('<td/>', {
@@ -116,6 +122,14 @@ $(document).ready(function() {
 					}, function(){
 						$('#app-add-org').foundation('reveal', 'close');
 					});
+=======
+					setTimeout(document.location.reload(), 2000);
+				}else{
+					$('.app-error-data-org').html(data);
+					$('#add-form-org').animate({'opacity': '0','display': 'none'}, 500);
+					$('.error-title').animate({'opacity': '0', 'display':'none'}, 500);
+					$('#app-error-msg-org').delay(300).animate({'opacity': '1', 'display': 'inherit', 'z-index': '9999'}, 500);
+>>>>>>> 71fd01c7c40f2fb1c09088c37a6dfe13b82b27ce
 				}
 			}
 		});
