@@ -4,8 +4,8 @@ class M_Mobile extends CI_Model {
 
 	public function __construct(){ 
 		parent::__construct();
-		$this->load->database('default');
-		//$this->load->database('production');
+		//$this->load->database('default');
+		$this->load->database('production');
 	}
 
 	public function autenticacion($user, $pass) {
