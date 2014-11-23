@@ -9,10 +9,12 @@ class Dashboard extends CI_Controller {
 
 	public function index() {
 		if($this->session->userdata('logger') == TRUE){
-			$datos['allusers'] = $this->m_dashboard->getAllUsers();
-			$datos['allcompany'] = $this->m_dashboard->getAllOrganizations();
-			$datos['allprojects'] = $this->m_dashboard->getAllProjects();
-			$datos['allimages'] = $this->m_dashboard->getAllImages();
+			$email = "";
+			$email = $this->session->userdata('u_email');
+			$datos['allusers'] = $this->m_dashboard->getAllUsers($email);
+			$datos['allcompany'] = $this->m_dashboard->getAllOrganizations($email);
+			$datos['allprojects'] = $this->m_dashboard->getAllProjects($email);
+			$datos['allimages'] = $this->m_dashboard->getAllImages($email);
 			$this->load->view('dashboard', $datos);
 		}else{
 			redirect(base_url());

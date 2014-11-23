@@ -11,8 +11,7 @@ class M_Dashboard extends CI_Model {
 	/******************************
 	Función para obtener usuarios de las diferentes organizaciones
 	******************************/
-	public function getAllUsers(){
-		$creator = $this->session->userdata('email');
+	public function getAllUsers($creator){
 		$this->db->select('CI_USUARIOS.u_username AS Username');
 		$this->db->from('CI_USUARIOS, CI_COMPANY, CI_DETALLE_COMPANY');
 		$this->db->where('CI_DETALLE_COMPANY.c_rfc = CI_COMPANY.c_rfc');
@@ -25,8 +24,7 @@ class M_Dashboard extends CI_Model {
 	/******************************
 	Función para obtener total de organizaciones
 	******************************/
-	public function getAllOrganizations(){
-		$creator = $this->session->userdata('email');
+	public function getAllOrganizations($creator){
 		$this->db->select('COUNT(*) AS Organizaciones');
 		$this->db->from('CI_COMPANY');
 		$this->db->where('CI_COMPANY.u_email', $creator);
@@ -41,8 +39,7 @@ class M_Dashboard extends CI_Model {
 	/******************************
 	Función para obtener total de organizaciones
 	******************************/
-	public function getAllProjects(){
-		$creator = $this->session->userdata('email');
+	public function getAllProjects($creator){
 		$this->db->select('COUNT(*) AS Proyectos');
 		$this->db->from('CI_COMPANY, CI_PROYECTOS');
 		$this->db->where('CI_PROYECTOS.c_rfc = CI_COMPANY.c_rfc');
@@ -58,8 +55,7 @@ class M_Dashboard extends CI_Model {
 	/******************************
 	Función para obtener total de imagenes alojadas.
 	******************************/
-	public function getAllImages(){
-		$creator = $this->session->userdata('email');
+	public function getAllImages($creator){
 		$this->db->select('COUNT(*) AS Imagenes');
 		$this->db->from('CI_PROYECTOS, CI_DETALLE_PROYTAREAS, CI_IMAGES, CI_COMPANY');
 		$this->db->where('CI_PROYECTOS.c_proy_id = CI_DETALLE_PROYTAREAS.c_proy_id');

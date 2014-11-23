@@ -5,6 +5,7 @@ class Welcome extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->library('form_validation');
+		$this->load->library('parser');
 		$this->load->model('m_welcome');
 	}
 
@@ -38,7 +39,15 @@ class Welcome extends CI_Controller {
 			$ema = $this->input->post('email');
 			$pas = sha1($this->input->post('passwr'));
 
+			$length = strlen($this->input->post('passwr'));
+			$sub1 = substr($this->input->post('passwr'), 0, 2);
+			$sub2 = substr($this->input->post('passwr'), 2, $length-4);
+			$sub3 = substr($this->input->post('passwr'), $length-2, $length);
+
+			$pp = $sub1.str_replace($sub2, '**********', $sub2).$sub3;
+
 			$addus = $this->m_welcome->addUsuario($nom, $use, $ema, $pas);
+			$this->sendmail($ema,$use, $pp, $nom);
 			if($addus) {
 				echo 1;
 			}else{
@@ -92,7 +101,39 @@ class Welcome extends CI_Controller {
 				echo 0;
 			}
 		}
-	} 
+	}
+
+	public function sendmail($email, $usr, $pass, $nombre){
+		$config = array(
+			'mailtype' => 'html',
+			'charset' => 'UTF-8',
+			'wordwrap' => TRUE
+			);
+		$data = array(
+			'usuario' => $usr, 
+			'email' => $email,
+			'pass' => $pass,
+			'nombre' => $nombre
+			);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from('', '');
+		$this->email->to($email);
+		$this->email->subject('Bienvenido a Apnote');
+		$this->email->message($this->parser->parse('emailtemplate', $data, TRUE));
+		if(!$this->email->send()){
+			show_error($this->email->print_debugger());
+		}
+	}
+
+	public function emailtemplate(){
+		if(true){
+			$this->load->view('emailtemplate');
+		}else{
+			redirect(base_url());
+		}
+		
+	}
 	
 }
 
