@@ -13,6 +13,17 @@
 		<script type="text/javascript" src="<?=base_url('assets/js/Chart.min.js');?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/imagenesChart.min.js')?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/proyectosChart.min.js')?>"></script>
+		<script type="text/javascript" src="<?=base_url('assets/js/pusherdist/pusher.min.js');?>"></script>
 		<script>$(document).foundation();</script>
+		<script type="text/javascript">
+		$(function(){
+			var pusher  = new Pusher('03fe18e686c444d57188');
+			var canal = pusher.subscribe('canal_prueba');
+
+			canal.bind('notify', function(respuesta){
+				
+			});
+		});
+		</script>
 	</body>
 </html>

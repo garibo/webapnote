@@ -20,6 +20,7 @@
 						<li class="separator-li"><a href="#">Principal</a></li>
 						<li <?php evalActive('dashboard'); ?>><a href="<?=base_url('dashboard');?>"><i class="icon-home4 icon-menu-nav"></i> Dashboard</a></li>
 						<li <?php evalActive('profile'); ?>><a href="<?=base_url('profile');?>"><i class="icon-head icon-menu-nav"></i> Mi Perfil</a></li>
+						<li <?php evalActive('notificaciones'); ?>><a href="<?=base_url('notificaciones');?>"><i class="icon-stack3 icon-menu-nav"></i>Notificaciones <!-- <span class="box-notification">23</span>--></a></li>
 						<br />
 						<li class="separator-li"><a href="#">Administración</a></li>
 						<li <?php evalActive('proyectos'); ?> id="proyectosli"><a href="#"><i class="icon-bulb icon-menu-nav"></i> Proyectos <i id="icon-toggle-icon" class="icon-arrow-right9"></i></a></li>

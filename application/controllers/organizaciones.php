@@ -5,6 +5,7 @@ class Organizaciones extends CI_Controller {
 	public function __construct() {
 		parent::__construct();
 		$this->load->model('m_organizaciones');
+		$this->load->model('notifications');
 		$this->load->library('form_validation');
 	}
 
@@ -64,14 +65,16 @@ class Organizaciones extends CI_Controller {
 			echo $result;
 
 		}else {
-			$rfc = $this->input->post('rfc');
+			$rfc = strtoupper($this->input->post('rfc'));
 			$name = $this->input->post('name');
 			$phone = $this->input->post('phone');
 			$des = $this->input->post('descripcion');
 			$clas = $this->input->post('clases');
 
 			$query = $this->m_organizaciones->insertOrg($rfc, $name, $phone, $des, $clas);
-			
+
+			$email = $this->session->userdata('u_email');
+			$query = $this->notifications->getNotifyOrganizacion($rfc, $email);
 			switch($clas) {
 				case 1: 
 					$clase = "A";
@@ -261,10 +264,13 @@ class Organizaciones extends CI_Controller {
 				$nombre = $this->input->post('t_name');
 				$apep = $this->input->post('t_apep');
 				$apem = $this->input->post('t_apem');
-				$pass = sha1($this->randomKey());
+				$passwd = $this->randomKey();
+				$pass = sha1($passwd);
 				$rol = 2;
 
+
 				$query = $this->m_organizaciones->iAddTeam($email, $username, $nombre, $apep, $apem, $pass, $rol, $rfc);
+				//$query = $this->sendmail($email,$username, $passwd, $nombre);
 				if($query){
 					$errors = array(
 						array(
@@ -286,6 +292,29 @@ class Organizaciones extends CI_Controller {
 			}
 		}else{
 			redirect(base_url());
+		}
+	}
+
+	public function sendmail($email, $usr, $pass, $nombre){
+		$config = array(
+			'mailtype' => 'html',
+			'charset' => 'UTF-8',
+			'wordwrap' => TRUE
+			);
+		$data = array(
+			'usuario' => $usr, 
+			'email' => $email,
+			'pass' => $pass,
+			'nombre' => $nombre
+			);
+		$this->load->library('email', $config);
+		$this->email->set_newline("\r\n");
+		$this->email->from('no-reply@recyclerscoders.com', 'Apnote Platform');
+		$this->email->to($email);
+		$this->email->subject('Bienvenido a Apnote');
+		$this->email->message($this->parser->parse('emailtemplate', $data, TRUE));
+		if(!$this->email->send()){
+			show_error($this->email->print_debugger());
 		}
 	}
 

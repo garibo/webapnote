@@ -16,7 +16,7 @@
 						</tr>
 					</tbody>
 				</table>
-				<table style="width: 50%; margin: 0 auto;">
+				<table style="width: 50%; margin: 0 auto; margin: auto !important;">
 					<tbody>
 						<tr>
 							<td style="text-align: center; padding-top: 40px;">
@@ -39,7 +39,9 @@
 											</blockquote>
 											<p style="font-family: open sans, arial, verdana, sans-serif;text-align: left;color: white;">Para continuar y disfrutar de los recursos de Apnote, solo presiona el botón inferior para 
 											activar tu cuenta.</p>
+											<br />
 											<a href="http://apnote.recyclerscoders.com/API/activation/<?=$usuario?>" class="btn btn-primary col-lg-12" style="font-family: open sans, arial, verdana, sans-serif;margin-top: 15px;margin-bottom: 15px; padding:15px; font-size: 16px;background: #F0514F;color: white;display: block;border-radius: 3px;text-decoration: none;">Verificar mi cuenta</a>
+											<br />
 											<p style="font-family: open sans, arial, verdana, sans-serif;text-align: left;color: white;width: 160px;">Saludos Cordiales</p>
 											<p style="margin-top: -10px;font-family: open sans, arial, verdana, sans-serif;text-align: left;color: white;width: 160px;">Equipo de Desarrollo</p>
 										</td>
@@ -51,11 +53,11 @@
 				</table>
 				<br />
 				<br/>
-				<table style="font-family: open sans, arial, verdana, sans-serif; background: #161616; height: 34px; text-align: center; height: 34px; width: 100%; margin: 0 auto;">
+				<table style="font-family: open sans, arial, verdana, sans-serif; background: #161616; height: 34px; text-align: center; height: 34px; width: 100%; margin: 0 auto; margin: auto !important;">
 					<tbody>
 						<tr>
 							<td>
-								<table style="font-family: open sans, arial, verdana, sans-serif; background: #161616; height: 34px; text-align: center; height: 34px; width: 50%; margin: 0 auto; padding-top: 15px; padding-bottom: 15px;">
+								<table style="font-family: open sans, arial, verdana, sans-serif; background: #161616; height: 34px; text-align: center; height: 34px; width: 50%; margin: 0 auto; margin: auto !important;; padding-top: 15px; padding-bottom: 15px;">
 									<tbody>
 										<tr>
 											<td width="60%">
