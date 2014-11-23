@@ -1,10 +1,13 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
+require_once APPPATH."/third_party/Pusher.php";
+
 class API extends CI_Controller {
 	
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('m_mobile');
+		$pusher = PusherInstance::get_pusher();
 	}
 
 	public function index(){
@@ -118,11 +121,19 @@ class API extends CI_Controller {
 		}
 	}
 
-	public function updateProyecto($id){
+	/* Funcion para completar proyecto */
+	public function updateProyecto($id, $usuario){
 		$datestring = '%Y-%m-%d %h:%i:%s';
 		$time = time();
 		$timestamp = mdate($datestring, $time); 
 		$result = $this->m_mobile->updateProyecto($id, $timestamp);
+		/*$pusher->trigger(
+			'canal_prueba',
+			'notify',
+			array(
+				'proyecto' => $id, 
+				'usuario' => $usuario
+				));*/
 		if($result){
 			$arreglo = array(
 				'type' => 1,
