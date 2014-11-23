@@ -46,9 +46,16 @@ class API extends CI_Controller {
 	public function activation($usr){
 		$query = $this->m_mobile->actives($usr);
 		if($query){
-			echo "Este usuario ".$usr." se ha activado correctamente.";
+			$data = array(
+				'success' => 1,
+				'usuario' => $usr
+				);
+			$this->load->view('activation', $data);
 		}else{
-			echo "Error";
+			$data = array(
+				'success' => 0,
+				);
+			$this->load->view('activation', $data);
 		}
 	}
 

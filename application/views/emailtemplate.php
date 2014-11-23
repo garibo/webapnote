@@ -12,11 +12,7 @@
 				<table style="font-family: open sans, arial, verdana, sans-serif; background: #161616; height: 34px; text-align: center; height: 34px; width: 100%;">
 					<tbody>
 						<tr>
-							<td>
-								<form style="color: #8C8C8C; font-size: 13px;">
-									Se ve mal el email? <input type="submit" style="text-decoration: none; background: none !important; margin-bottom: 3px;border:0;color: #164EDD; cursor: pointer;" value="Entra aquí" />
-								</form>
-							</td>
+							<td></td>
 						</tr>
 					</tbody>
 				</table>
