@@ -623,7 +623,25 @@ $(document).ready(function() {
 			confirmButtonText: 'Si, Aceptar!',
 			closeOnConfirm: false
 		}, function(){
-			
+			$.ajax({
+				url: '/notificaciones/rechazado/'+id,
+				dataType: 'json',
+				success: function(response) {
+					if(response.success === 1){
+						swal({
+							title: 'Proyecto Rechazado!',
+							text: 'Este proyecto ha sido enviado nuevamente al responsable.',
+							timer: 3000
+						});
+					}else{
+						swal({
+							title: 'Upps!',
+							text: 'Hubo un problema al procesar el evento.',
+							timer: 3000
+						});
+					}
+				}
+			});
 		});
 	});
 

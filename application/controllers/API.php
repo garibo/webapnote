@@ -128,6 +128,8 @@ class API extends CI_Controller {
 		$time = time();
 		$timestamp = mdate($datestring, $time); 
 		$result = $this->m_mobile->updateProyecto($id, $timestamp);
+		$receptor = $this->m_mobile->propietarioOrganization($id);
+		$not = $this->m_mobile->registrarNotificacion($usuario, $receptor->Email, 4, $id);
 		/*$pusher->trigger(
 			'canal_prueba',
 			'notify',

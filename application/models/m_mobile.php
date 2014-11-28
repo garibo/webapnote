@@ -197,4 +197,29 @@ class M_Mobile extends CI_Model {
 		
 	}
 
+	/* Obtener al propietario de una organización */
+	public function propietarioOrganization($id){
+		$this->db->select('CI_USUARIOS.u_email AS Email');
+		$this->db->from('CI_USUARIOS, CI_COMPANY, CI_PROYECTOS');
+		$this->db->where('CI_COMPANY.c_rfc = CI_PROYECTOS.c_rfc');
+		$this->db->where('CI_COMPANY.u_email = CI_USUARIOS.u_email');
+		$this->db->where('CI_PROYECTOS.c_proy_id', $id);
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->first_row();
+		}else{
+			return null;
+		}
+	}
+
+	public function registrarNotificacion($origen, $destino, $tipo, $referencia) {
+		$data = array(
+			'ci_origin' => $origen, 
+			'ci_receptor' => $destino, 
+			'ci_type' => $tipo, 
+			'ci_reference' => $referencia
+			);
+		return $this->db->insert('CI_NOTIFICACIONES', $data);
+	}
+
 }
