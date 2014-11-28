@@ -54,7 +54,7 @@
 					</div>
 					<div class="large-6 columns">
 						<div class="panel panel-item">
-							<h6>Recuento de Imagenes</h6>
+							<h6>Proyectos pendientes de revisión</h6>
 							<canvas id="imagenesChart" class="large-10" width="528" height="160"></canvas>
 						</div>
 					</div>

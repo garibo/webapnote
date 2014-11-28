@@ -5,6 +5,18 @@ $(document).ready(function() {
 		$(this).each(function() { this.reset(); });
 	};
 
+	$.ajax({
+		url: '/notificaciones/obtenerNotificacionesPendientes',
+		type: 'GET',
+		dataType: 'json',
+		success: function(response) {
+			$('#not span').remove();
+			$('#not').append('<span class="box-notification" style="text-align: center; display: none;">'+response.total+'</span>')
+			$('#not span').fadeIn('slow');
+		}
+	});
+	
+
 	//limit for inputs
 	$('#rfc-input').limitar({limite: 13, id_counter: 'counter', clase_alert: 'alert'});
 	$('#user-inputname').limitar({limite: 10, id_counter: "counter", clase_alert: "alert"});
@@ -559,6 +571,60 @@ $(document).ready(function() {
 		var hijos = $(e.target).children();
 		hijos.css('color', '#909090');
 		e.preventDefault();
+	});
+
+	// Aceptar un proyecto ;
+	$('ul.navtimeline').on('click', '#checkok', function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		console.log(id);
+		swal({
+			title: 'Marcar como aceptado?',
+			text: 'Una vez aceptado, ya no se podrá cambiar',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: 'Si, Aceptar!',
+			closeOnConfirm: false
+		}, function(){
+			$.ajax({
+				url: '/notificaciones/aceptado/'+id,
+				dataType: 'json',
+				success: function(response) {
+					if(response.success === 1){
+						swal({
+							title: 'Proyecto Aceptado!',
+							text: 'Ahora podrás visualizar el icono de adjunto en el proyecto.',
+							timer: 3000
+						});
+					}else{
+						swal({
+							title: 'Upps!',
+							text: 'Hubo un problema al procesar el evento.',
+							timer: 3000
+						});
+					}
+				}
+			});
+		});
+	});
+
+	// Rechazar un proyecto ;
+	$('ul.navtimeline').on('click', '#replybad',function(e){
+		e.preventDefault();
+		var id = $(this).data('id');
+		console.log(id);
+		swal({
+			title: 'Marcar como rechazado?',
+			text: 'Una vez rechazado, ya no se podrá cambiar',
+			type: 'warning',
+			showCancelButton: true,
+			confirmButtonColor: "#DD6B55",
+			confirmButtonText: 'Si, Aceptar!',
+			closeOnConfirm: false
+		}, function(){
+			
+		});
 	});
 
 });

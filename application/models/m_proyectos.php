@@ -37,6 +37,7 @@ class M_Proyectos extends CI_Model {
 		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id = CI_PROYECTOS.c_proy_id');
 		$this->db->where('CI_PROYECTOS.c_rfc', $rfc);
 		$this->db->where('CI_PROYECTOS.c_proy_bandera', '1');
+		$this->db->where('CI_PROYECTOS.c_proy_success <> 1');
 		$this->db->group_by('Nombre');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
@@ -51,6 +52,26 @@ class M_Proyectos extends CI_Model {
 		$this->db->from('CI_PROYECTOS');
 		$this->db->where('CI_PROYECTOS.c_rfc', $rfc);
 		$this->db->where('CI_PROYECTOS.c_proy_bandera <> 1');
+		$this->db->where('CI_PROYECTOS.c_proy_success <> 1');
+		$query = $this->db->get();
+		if($query->num_rows() > 0){
+			return $query->result_array();
+		}else{
+			return null;
+		}
+	}
+
+	/* Proyectos Terminados */
+	public function loadProyectosFinished($rfc) {
+		$this->db->select('CI_PROYECTOS.c_proy_id AS Id, CI_PROYECTOS.c_proy_name AS Nombre, CI_PROYECTOS.c_fecha_creado AS CreadoEn, CI_PROYECTOS.c_aceptado AS Aceptado, COUNT(*) AS Tareas');
+		$this->db->from('CI_PROYECTOS, CI_DETALLE_PROYASIGN, CI_USUARIOS, CI_DETALLE_PROYTAREAS');
+		$this->db->where('CI_PROYECTOS.c_proy_id = CI_DETALLE_PROYASIGN.c_proy_id');
+		$this->db->where('CI_USUARIOS.u_email = CI_DETALLE_PROYASIGN.u_email');
+		$this->db->where('CI_DETALLE_PROYTAREAS.c_proy_id = CI_PROYECTOS.c_proy_id');
+		$this->db->where('CI_PROYECTOS.c_rfc', $rfc);
+		$this->db->where('CI_PROYECTOS.c_proy_bandera', '1');
+		$this->db->where('CI_PROYECTOS.c_proy_success', '1');
+		$this->db->group_by('Nombre');
 		$query = $this->db->get();
 		if($query->num_rows() > 0){
 			return $query->result_array();

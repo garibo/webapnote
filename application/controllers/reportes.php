@@ -10,4 +10,9 @@ class Reportes extends CI_Controller {
 		$this->load->view('reportes');
 	}
 
+	public function mostrar($id){
+		$data['Id'] = $id;
+		$this->load->view('showreport', $data);
+	}
+
 }

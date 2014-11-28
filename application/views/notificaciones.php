@@ -23,6 +23,7 @@
 						<h5 class="subheader-title">Notificaciones </h5>
 					</div>
 				</div>
+				<?php if(empty($notificaciones)): ?>
 				<div class="row">
 					<div class="large-10 column">
 						<div id="content-proyecto" class="panel callout">
@@ -31,6 +32,20 @@
 						</div>
 					</div>
 				</div>
+				<?php else: ?>
+				<div class="row">
+					<div class="large-10 column">
+						<ul class="navtimeline">
+							<?php foreach($notificaciones as $row): ?>
+								<li><span class="avatartimeline"><img src="<?=base_url('assets/img/thumbs');?>/<?=$row['Photo'];?>" /></span><b><?php echo $row['Nombre'].' '.$row['Apep'].' '.$row['Apem']; ?></b> ha enviado un proyecto para su revisión. <span class="clockdate"><i class="icon-clock"></i> <?=$row['Fecha'];?></span> <a href="<?=base_url('reportes/mostrar/')?>/<?=$row['IdProyecto']?>"> Revisar</a> <a href="#" id="checkok" data-id="<?=$row['IdProyecto']?>" style="right: 65px;"><span class="icon-circle-check"></span></a> <a href="#" id="replybad" data-id="<?=$row['IdProyecto']?>" style="right: 35px;"><span class="icon-circle-cross"></span></a></li>
+							<?php endforeach; ?>
+						</ul>
+						<ul class="pagination right" style="margin-top: 30px;">
+							<?=$pages?>
+						</ul>
+					</div>
+				</div>
+				<?php endif; ?>
 			</div>
 		</div>
 	</div>

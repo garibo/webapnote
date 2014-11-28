@@ -78,6 +78,12 @@
 				<div class="row">
 					<div class="large-10 column">
 						<ul class="large-block-grid-3 list-projects" id="body-projects" style="margin-top: 5px;">
+						<?php if(!empty($proyectosActivos) && !empty($proyectosInactivos) && !empty($proyectosTerminados)): ?>
+							<div class="panel callout">
+								<p class="text-center" style="line-height: inherit !important;"><i class="fi-annotate" style="font-size: 50px;color: #AAAAAA;"></i></p>
+								<h6 style="color: #AAAAAA;" class="text-center">Usted no tiene proyectos en esta Organización.</h6>
+							</div>
+						<?php endif; ?>
 						<?php if(!empty($proyectosActivos)): ?>
 							<?php foreach($proyectosActivos as $row): ?>
 							<li>
@@ -94,12 +100,7 @@
 									</div>
 								</div>
 							</li>
-						<?php endforeach;?>
-						<?php else: ?>
-							<div class="panel callout">
-								<p class="text-center" style="line-height: inherit !important;"><i class="fi-annotate" style="font-size: 50px;color: #AAAAAA;"></i></p>
-								<h6 style="color: #AAAAAA;" class="text-center">Usted no tiene proyectos en esta Organización.</h6>
-							</div>
+							<?php endforeach;?>
 						<?php endif; ?>
 						<?php if(!empty($proyectosInactivos)): ?>
 								<?php foreach($proyectosInactivos as $row): ?>
@@ -114,6 +115,24 @@
 											</div>
 											<div class="opciones">
 												<p><a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 22px !important; position: absolute; top: -3px;" class="icon-trash2"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="icon-paper"></i></a></p>
+											</div>
+										</div>
+									</li>
+								<?php endforeach;?>
+						<?php endif; ?>
+						<?php if(!empty($proyectosTerminados)): ?>
+								<?php foreach($proyectosTerminados as $row): ?>
+									<li>
+										<div id="block-item">
+											<div class="swatch-preview swatch-preview-success"></div>
+											<h6 class="text-right title"><?=$row['Nombre'];?></h6>
+											<hr />
+											<div class="info-tasks">
+												<p><b><?=$row['Tareas']?> Tareas</b></p>
+												<p><span><?=$row['CreadoEn'];?></span></p>
+											</div>
+											<div class="opciones">
+												<p><?php if($row['Aceptado'] != 0): ?><a href="<?=base_url('reportes/mostrar');?>/<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 22px !important; left: -35px; position: absolute; top: -3px;" class="icon-paper-clip"></i></a><?php endif; ?> <a href="#" id="getParent" data-id="<?=$row['Id']?>" class="btn-delete btn-absolute"><i style="font-size: 22px !important; position: absolute; top: -3px;" class="icon-trash2"></i></a> <a href="<?=base_url('/proyectos');?>/view/<?=$row['Id']?>/<?=$orgpro['c_rfc'];?>"><i class="icon-paper"></i></a></p>
 											</div>
 										</div>
 									</li>

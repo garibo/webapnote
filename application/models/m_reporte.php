@@ -4,10 +4,11 @@ class M_Reporte extends CI_Model {
 
 	public function __construct(){ 
 		parent::__construct();
-		//$this->load->database('default');
-		$this->load->database('production');
+		$this->load->database('default');
+		//$this->load->database('production');
 	}
 
+	
 	/***********************************
 		Obtener Información acerca de un Proyecto.
 	***********************************/
@@ -25,7 +26,6 @@ class M_Reporte extends CI_Model {
 			return null;
 		}
 	}
-
 	/***********************************
 		Obtener información sobre la compañia a la que pertenece
 	***********************************/
@@ -41,7 +41,6 @@ class M_Reporte extends CI_Model {
 			return null;
 		}
 	}
-
 	/***********************************
 		Obtener Información de la Tarea
 	***********************************/
@@ -57,7 +56,6 @@ class M_Reporte extends CI_Model {
 			return null;
 		}
 	}
-
 	/***********************************
 		Obtener el Total de Imagenes de una Tarea
 	***********************************/
@@ -69,7 +67,6 @@ class M_Reporte extends CI_Model {
 		$query = $this->db->get();
 		return $query->num_rows();
 	}
-
 	/***********************************
 		Obtener información de las imagenes de una Tarea
 	***********************************/
@@ -83,5 +80,5 @@ class M_Reporte extends CI_Model {
 			return $query->result_array();
 		}
 	}
-
+	
 }

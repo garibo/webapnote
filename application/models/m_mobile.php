@@ -192,4 +192,9 @@ class M_Mobile extends CI_Model {
 		}
 	}
 
+	/* Obtener informacion sobre un usuario */
+	public function getProfileInfo($email){
+		
+	}
+
 }

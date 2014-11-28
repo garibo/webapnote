@@ -22,6 +22,7 @@ class Proyectos extends CI_Controller {
 		if($this->session->userdata('logger') == TRUE){
 			$datos['proyectosActivos'] = $this->m_proyectos->loadProyectos($rfc);
 			$datos['proyectosInactivos'] = $this->m_proyectos->loadProyectosInactive($rfc);
+			$datos['proyectosTerminados'] = $this->m_proyectos->loadProyectosFinished($rfc);
 			$datos['categorias'] = $this->m_proyectos->obtenerCategorias();
 			$datos['orgpro'] = $this->m_proyectos->obtenerOrganizacion($rfc);
 			$this->load->view('proyecto_selected', $datos);
@@ -130,8 +131,9 @@ class Proyectos extends CI_Controller {
 
 	/*********** Categorias Index  ***************/
 	
-	public function categorias($start=0){
+	public function categorias(){
 		if($this->session->userdata('logger') == TRUE){
+			$start=0;
 			$datos['categorias'] = $this->m_proyectos->obtenerCategoriaslimit(9, $start);
 			$config['base_url'] = base_url().'proyectos/categorias/';
 			$config['total_rows'] = $this->m_proyectos->get_categories_count();

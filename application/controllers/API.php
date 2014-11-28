@@ -122,7 +122,8 @@ class API extends CI_Controller {
 	}
 
 	/* Funcion para completar proyecto */
-	public function updateProyecto($id, $usuario){
+	public function updateProyecto($id){
+		$usuario = $this->input->get('email');
 		$datestring = '%Y-%m-%d %h:%i:%s';
 		$time = time();
 		$timestamp = mdate($datestring, $time); 
@@ -215,6 +216,26 @@ class API extends CI_Controller {
 		}else{
 			$result = json_encode($query);
 		}
+		echo $_GET['jsoncallback'].'('.$result.')';
+	}
+
+	/* Obtener informacion personal de un usuario en especifico */
+	public function getProfileInformation(){
+		$email = $this->input->get('user');
+		$query = $this->m_mobile->getProfileInfo($email);
+		if($query != null){
+			$data = array(
+				'usuario' => $query->u_username, 
+				'email' => $query->u_email, 
+				'thumb' => $query->u_photo, 
+				'nombre' => $query->u_nombre, 
+				'date' => $query->u_date
+				);
+			$result = json_encode($data);
+		}else{
+			$result = json_encode($query);
+		}
+
 		echo $_GET['jsoncallback'].'('.$result.')';
 	}
 
