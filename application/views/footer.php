@@ -11,8 +11,8 @@
 		<script type="text/javascript" src="<?=base_url('assets/js/limitar.js');?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/sweet-alert.min.js');?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/Chart.min.js');?>"></script>
-		<script type="text/javascript" src="<?=base_url('assets/js/imagenesChart.min.js')?>"></script>
-		<script type="text/javascript" src="<?=base_url('assets/js/proyectosChart.min.js')?>"></script>
+		<!-- <script type="text/javascript" src="<?=base_url('assets/js/imagenesChart.min.js')?>"></script> -->
+		<!-- <script type="text/javascript" src="<?=base_url('assets/js/proyectosChart.min.js')?>"></script> -->
 		<script type="text/javascript" src="<?=base_url('assets/js/pusherdist/pusher.min.js');?>"></script>
 		<script type="text/javascript" src="<?=base_url('assets/js/jquery.inputlimiter.min.js');?>"></script>
 		<script>$(document).foundation();</script>

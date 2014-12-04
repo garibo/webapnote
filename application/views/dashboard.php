@@ -53,18 +53,18 @@
 						</div>
 					</div>
 					<div class="large-6 columns">
-						<div class="panel panel-item">
+						<!-- <div class="panel panel-item">
 							<h6>Proyectos pendientes de revisión</h6>
 							<canvas id="imagenesChart" class="large-10" width="528" height="160"></canvas>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<div class="row">
 					<div class="large-3 columns">
-						<div class="panel panel-item">
+						<!-- <div class="panel panel-item">
 							<h6>Acerca de Proyectos</h6>
 							<canvas id="proyectosChart" class="large-10" width="230" height="120"></canvas>
-						</div>
+						</div> -->
 					</div>
 				</div>
 				<!-- Ending Dashboard -->
