@@ -47,7 +47,7 @@ class Welcome extends CI_Controller {
 			$pp = $sub1.str_replace($sub2, '**********', $sub2).$sub3;
 
 			$addus = $this->m_welcome->addUsuario($nom, $use, $ema, $pas);
-			$this->sendmail($ema,$use, $pp, $nom);
+			//$this->sendmail($ema,$use, $pp, $nom);
 			if($addus) {
 				echo 1;
 			}else{
@@ -117,7 +117,7 @@ class Welcome extends CI_Controller {
 			);
 		$this->load->library('email', $config);
 		$this->email->set_newline("\r\n");
-		$this->email->from('', '');
+		$this->email->from('no-reply@recyclerscoders.com', 'Apnote Platform');
 		$this->email->to($email);
 		$this->email->subject('Bienvenido a Apnote');
 		$this->email->message($this->parser->parse('emailtemplate', $data, TRUE));
@@ -132,7 +132,6 @@ class Welcome extends CI_Controller {
 		}else{
 			redirect(base_url());
 		}
-		
 	}
 	
 }
